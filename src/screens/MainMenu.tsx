@@ -30,7 +30,7 @@ export const MainMenu: React.FC = () => {
                 </div>
 
                 <div className="mt-8">
-                    <StyledButton onClick={() => alert('Settings not implemented yet.')} variant="icon" aria-label="Settings">
+                    <StyledButton onClick={() => navigate('/settings')} variant="icon" aria-label="Settings">
                         {ICONS.SETTINGS}
                     </StyledButton>
                 </div>

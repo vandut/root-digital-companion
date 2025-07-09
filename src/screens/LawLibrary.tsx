@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 import { Faction, LibraryCategory } from '../constants/types';
 import { FactionDetail } from '../components/FactionDetail';
@@ -15,6 +15,13 @@ export const LawLibrary: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { categoryId, factionId } = useParams<{ categoryId?: string, factionId?: string }>();
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.scrollTop = 0;
+        }
+    }, [categoryId, factionId]);
 
     const fromGame = location.state?.fromGame;
 
@@ -22,6 +29,14 @@ export const LawLibrary: React.FC = () => {
     const selectedCategory: LibraryCategory | null = selectedFaction 
         ? LIBRARY_DATA.find(c => c.id === 'factions') || null 
         : (categoryId ? LIBRARY_DATA.find(c => c.id === categoryId) || null : null);
+
+    const handleHeaderAction = () => {
+        if (fromGame) {
+            navigate('/game');
+        } else {
+            navigate('/', { replace: true });
+        }
+    };
 
     const Breadcrumbs = () => {
         return (
@@ -59,13 +74,13 @@ export const LawLibrary: React.FC = () => {
 
     const renderContent = () => {
         if (selectedFaction) {
-            return <LibraryContainer><FactionDetail faction={selectedFaction} /></LibraryContainer>;
+            return <LibraryContainer ref={containerRef}><FactionDetail faction={selectedFaction} /></LibraryContainer>;
         }
         
         if (selectedCategory) {
             if (selectedCategory.type === 'factions') {
                 return (
-                    <LibraryContainer>
+                    <LibraryContainer ref={containerRef}>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {Object.values(FACTIONS).map(faction => (
                                 <li key={faction.id}>
@@ -90,7 +105,7 @@ export const LawLibrary: React.FC = () => {
                 );
             }
             return (
-                <LibraryContainer>
+                <LibraryContainer ref={containerRef}>
                     <div className="space-y-8">
                         {selectedCategory.topics?.map(topic => (
                             <div key={topic.id}>
@@ -117,7 +132,7 @@ export const LawLibrary: React.FC = () => {
         }
         
         return (
-             <LibraryContainer>
+             <LibraryContainer ref={containerRef}>
                 <div className="space-y-4">
                     {LIBRARY_DATA.map(category => (
                         <Link
@@ -142,17 +157,20 @@ export const LawLibrary: React.FC = () => {
             <header className="bg-stone-900 border-b-4 border-orange-900 shadow-lg z-10 flex-shrink-0">
                 <div className="max-w-4xl mx-auto p-4 flex justify-between items-center gap-4">
                     <div className="flex items-center gap-4 flex-1 min-w-0">
-                        <StyledButton
-                            onClick={() => navigate(-1)}
-                            variant="icon"
-                            className={`!bg-stone-700 !text-stone-100 hover:!bg-stone-600 shadow-md flex-shrink-0 ${!showBackButton ? 'invisible' : ''}`}
-                            disabled={!showBackButton}
-                        >
-                           {ICONS.BACK}
-                        </StyledButton>
+                        {showBackButton ? (
+                            <StyledButton
+                                onClick={() => navigate(-1)}
+                                variant="icon"
+                                className="!bg-stone-700 !text-stone-100 hover:!bg-stone-600 shadow-md flex-shrink-0"
+                            >
+                               {ICONS.BACK}
+                            </StyledButton>
+                        ) : (
+                            <div className="w-10 h-10 flex-shrink-0" />
+                        )}
                         <Breadcrumbs />
                     </div>
-                    <StyledButton onClick={() => navigate(fromGame ? '/game' : '/')} variant="secondary">
+                    <StyledButton onClick={handleHeaderAction} variant="secondary">
                       {fromGame ? 'Back to Game' : 'Main Menu'}
                     </StyledButton>
                 </div>

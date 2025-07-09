@@ -17,14 +17,35 @@ export const TurnDashboard: React.FC = () => {
     const [modalStack, setModalStack] = useState<{ type: string; data?: any }[]>([]);
 
     const openModal = (type: string, data?: any) => {
+        // Push a dummy state into history so the back button is intercepted.
+        window.history.pushState({ modal: true }, '');
         setModalStack(stack => [...stack, { type, data }]);
     };
 
     const closeModal = () => {
-        setModalStack(stack => stack.slice(0, -1));
+        // Programmatically go back, which triggers the 'popstate' event handler.
+        if (modalStack.length > 0) {
+            window.history.back();
+        }
     };
 
     useEffect(() => {
+        // This listener handles the 'popstate' event (triggered by back button or history.back()).
+        const handlePopState = () => {
+            // Sync the modal stack with the history change.
+            setModalStack(stack => stack.slice(0, -1));
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []); // This effect runs once on mount to set up the listener.
+
+
+    useEffect(() => {
+        // This listener handles the Escape key to close modals.
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === 'Escape' && modalStack.length > 0) {
                 closeModal();
@@ -34,13 +55,13 @@ export const TurnDashboard: React.FC = () => {
         return () => {
             document.removeEventListener('keydown', handleEscape);
         };
-    }, [modalStack]);
+    }, [modalStack]); // Re-add listener if modalStack changes, to get the correct length.
     
     if (!gameState) {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
                 <p className="text-xl">No active game.</p>
-                <StyledButton onClick={() => navigate('/')} className="mt-4">Go to Main Menu</StyledButton>
+                <StyledButton onClick={() => navigate('/', { replace: true })} className="mt-4">Go to Main Menu</StyledButton>
             </div>
         );
     }
@@ -51,7 +72,7 @@ export const TurnDashboard: React.FC = () => {
     const phaseData = currentFaction.turn[currentPhase];
 
     const handleExitGame = () => {
-        navigate('/');
+        navigate('/', { replace: true });
     };
     
     const handlePhaseAction = () => {

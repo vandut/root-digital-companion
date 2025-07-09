@@ -135,7 +135,7 @@ export const NewGameSetup: React.FC = () => {
                             ))}
                         </div>
                         <div className="flex gap-4 mt-8">
-                           <StyledButton onClick={() => navigate('/')} variant="secondary" className="w-full">Cancel</StyledButton>
+                           <StyledButton onClick={() => navigate('/', { replace: true })} variant="secondary" className="w-full">Cancel</StyledButton>
                            <StyledButton onClick={() => setStep(2)} className="w-full">Next</StyledButton>
                         </div>
                     </div>
