@@ -7,7 +7,7 @@ interface LibraryContainerProps {
 
 export const LibraryContainer = React.forwardRef<HTMLDivElement, LibraryContainerProps>(({ children }, ref) => {
   return (
-    <div ref={ref} className="bg-[#D3C6B0] p-6 rounded-lg shadow-xl border-2 border-stone-800 max-h-full overflow-y-auto">
+    <div ref={ref} className="bg-[#D3C6B0] p-4 sm:p-6 sm:rounded-lg sm:shadow-xl sm:border-2 sm:border-stone-800 max-h-full overflow-y-auto h-full">
       {children}
     </div>
   );
