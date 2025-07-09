@@ -1,0 +1,77 @@
+
+export enum FactionId {
+  MARQUISE_DE_CAT = 'marquise-de-cat',
+  EYRIE_DYNASTIES = 'eyrie-dynasties',
+  WOODLAND_ALLIANCE = 'woodland-alliance',
+  VAGABOND = 'vagabond',
+  LIZARD_CULT = 'lizard-cult',
+  RIVERFOLK_COMPANY = 'riverfolk-company',
+  UNDERGROUND_DUCHY = 'underground-duchy',
+  CORVID_CONSPIRACY = 'corvid-conspiracy',
+  LORD_OF_THE_HUNDREDS = 'lord-of-the-hundreds',
+  KEEPERS_IN_IRON = 'keepers-in-iron',
+}
+
+export enum GamePhase {
+  BIRDSONG = 'Birdsong',
+  DAYLIGHT = 'Daylight',
+  EVENING = 'Evening',
+}
+
+export enum OrderType {
+    ORDERED = 'ordered',
+    UNORDERED = 'unordered',
+}
+
+export interface FactionAction {
+  title: string;
+  description: string;
+  details: string[];
+  order: OrderType;
+}
+
+export interface FactionPhase {
+  actions: FactionAction[];
+}
+
+export type FactionPhaseActions = {
+  [key in GamePhase]: FactionPhase;
+};
+
+export interface Faction {
+  id: FactionId;
+  name: string;
+  reach: number;
+  type: 'Militant' | 'Insurgent';
+  tagline: string;
+  howToWin: string;
+  howToPlay: string;
+  strategy: string;
+  specialAbilities: { title: string; description: string }[];
+  setup: string[];
+  turn: FactionPhaseActions;
+}
+
+export interface LibraryContentBlock {
+    subtitle?: string;
+    text: string;
+    list?: string[];
+    collapsible?: {
+        summary: string;
+        details: string[];
+    }
+}
+
+export interface LibraryTopic {
+    id: string;
+    title: string;
+    content: LibraryContentBlock[];
+}
+
+export type LibraryCategory = {
+    id: string;
+    title: string;
+    description: string;
+    type: 'rules' | 'factions';
+    topics?: LibraryTopic[];
+};

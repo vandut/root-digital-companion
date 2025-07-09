@@ -1,0 +1,6 @@
+{
+  "name": "Root Digital Companion",
+  "description": "An interactive turn assistant and rules reference for the Root board game. It guides players through setup and gameplay, dynamically providing context-sensitive rules for the active player's faction and turn phase.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
