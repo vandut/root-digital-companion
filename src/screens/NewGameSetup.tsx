@@ -210,7 +210,7 @@ export const NewGameSetup: React.FC = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-fixed" style={{ backgroundImage: `url('${IMAGES.BACKDROP_MAIN_MENU}')` }}>
-            <div className="bg-amber-50/80 backdrop-blur-md p-8 rounded-xl shadow-2xl w-full max-w-lg border-4 border-stone-800">
+            <div className="bg-amber-50/80 backdrop-blur-md p-8 rounded-xl shadow-2xl w-11/12 sm:w-full max-w-lg border-4 border-stone-800">
                 {renderStep()}
             </div>
         </div>
