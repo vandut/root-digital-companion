@@ -5,10 +5,10 @@ import { Card } from '../components/Card';
 import { StyledButton } from '../components/StyledButton';
 import { useGame } from '../hooks/useGame';
 import { Player } from '../types';
-import { FactionId, GamePhase } from '../constants/types';
+import { Faction, FactionId, GamePhase } from '../constants/types';
 import { FACTIONS } from '../constants/factions';
 import { REACH_RECOMMENDATIONS } from '../constants/game';
-import { CustomSelect } from '../components/CustomSelect';
+import { CustomSelect, Option, OptionGroup } from '../components/CustomSelect';
 import { CustomTextInput } from '../components/CustomTextInput';
 import { IMAGES } from '../constants/images';
 
@@ -80,21 +80,45 @@ export const NewGameSetup: React.FC = () => {
         const availableToThisPlayer = Object.values(FACTIONS)
             .filter(f => !otherPlayersFactions.includes(f.id as any));
 
-        return [
-            { value: '', label: 'Select a faction', disabled: true },
-            ...availableToThisPlayer.map(f => ({ 
-                value: f.id, 
-                label: (
-                    <span>
-                        {f.name} ({' '}
-                        <span className={f.type === 'Militant' ? 'text-red-700' : 'text-green-700'}>
-                            {f.type}
-                        </span>{' '}
-                        | Reach: {f.reach})
+        const mapFactionToOption = (faction: Faction): Option => ({
+            value: faction.id,
+            label: (
+                <>
+                    <span className={faction.type === 'Militant' ? 'text-red-700' : 'text-green-700'}>
+                        {faction.name}
                     </span>
-                )
-            }))
+                    <span className="text-stone-600"> (R: {faction.reach})</span>
+                </>
+            )
+        });
+
+        const militants: Option[] = availableToThisPlayer
+            .filter(f => f.type === 'Militant')
+            .map(mapFactionToOption);
+            
+        const insurgents: Option[] = availableToThisPlayer
+            .filter(f => f.type === 'Insurgent')
+            .map(mapFactionToOption);
+
+        const options: (Option | OptionGroup)[] = [
+            { value: '', label: 'Select a faction', disabled: true },
         ];
+
+        if (militants.length > 0) {
+            options.push({
+                label: 'Militant',
+                options: militants,
+            });
+        }
+
+        if (insurgents.length > 0) {
+            options.push({
+                label: 'Insurgent',
+                options: insurgents,
+            });
+        }
+
+        return options;
     };
 
     const renderStep = () => {

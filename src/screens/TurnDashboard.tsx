@@ -87,7 +87,7 @@ export const TurnDashboard: React.FC = () => {
         let orderedActionCounter = 1;
 
         return (
-            <div className="space-y-4">
+            <div className="space-y-2 sm:space-y-4">
                 {phaseData.actions.map((action) => {
                     const number = action.order === OrderType.ORDERED ? orderedActionCounter++ : null;
                     
@@ -215,9 +215,7 @@ export const TurnDashboard: React.FC = () => {
                     );
                 }
                 
-                if (!children) return null;
-
-                return (
+                return children && (
                     <Modal
                         key={index} 
                         isOpen={true}
