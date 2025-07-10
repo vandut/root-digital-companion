@@ -16,6 +16,7 @@ import { landmarks } from '../constants/library/landmarks';
 import { hirelings } from '../constants/library/hirelings';
 import { variantMaps } from '../constants/library/variantMaps';
 import { setup as advancedSetupRules } from '../constants/library/advancedSetup';
+import { exilesAndPartisansDeck } from '../constants/library/exilesAndPartisansDeck';
 
 export const NewGameSetup: React.FC = () => {
     const navigate = useNavigate();
@@ -29,23 +30,28 @@ export const NewGameSetup: React.FC = () => {
     const [useLandmarks, setUseLandmarks] = useState(false);
     const [useHirelings, setUseHirelings] = useState(false);
     const [useAdvancedSetup, setUseAdvancedSetup] = useState(false);
+    const [usePartisansDeck, setUsePartisansDeck] = useState(false);
 
     const handleAdvancedSetupChange = (checked: boolean) => {
         setUseAdvancedSetup(checked);
         if (!checked) {
             setUseLandmarks(false);
             setUseHirelings(false);
+            setUsePartisansDeck(false);
         }
     };
     
     const wizardSteps = useMemo(() => {
+        if (!useAdvancedSetup) {
+            return ['players', 'map-modules', 'factions', 'faction-setup', 'finalize'];
+        }
+        
         const steps = ['players', 'map-modules'];
         if (map !== 'Fall') steps.push('map-setup');
-        if (useAdvancedSetup) {
-            if (useLandmarks) steps.push('landmark-setup');
-            if (useHirelings) steps.push('hireling-setup');
-            steps.push('advanced-setup-draft-info');
-        }
+        steps.push('draw-initial-cards');
+        if (useLandmarks) steps.push('landmark-setup');
+        if (useHirelings) steps.push('hireling-setup');
+        steps.push('advanced-setup-draft-info');
         steps.push('factions', 'faction-setup', 'finalize');
         return steps;
     }, [map, useLandmarks, useHirelings, useAdvancedSetup]);
@@ -111,8 +117,10 @@ export const NewGameSetup: React.FC = () => {
         startNewGame({
             players: finalPlayers,
             map,
+            useAdvancedSetup,
             useLandmarks,
             useHirelings,
+            usePartisansDeck,
             currentPlayerIndex: 0,
             currentPhase: GamePhase.BIRDSONG,
         });
@@ -169,10 +177,11 @@ export const NewGameSetup: React.FC = () => {
         return options;
     };
 
-    const SetupInstructionCard: React.FC<{ blocks: LibraryContentBlock[] }> = ({ blocks }) => (
+    const SetupInstructionCard: React.FC<{ blocks?: LibraryContentBlock[], text?: string | React.ReactNode }> = ({ blocks, text }) => (
         <Card padding="p-4" className="bg-amber-100/60 max-h-[26rem] overflow-y-auto pr-2">
             <div className="space-y-3 text-stone-800">
-                {blocks.map((block, index) => (
+                {text && <p className="leading-relaxed">{text}</p>}
+                {blocks?.map((block, index) => (
                     block.collapsible && (
                         <div key={index} className="space-y-2">
                             {block.collapsible.details.map((detail, detailIndex) => (
@@ -193,7 +202,7 @@ export const NewGameSetup: React.FC = () => {
                 const numPlayerOptions = [2, 3, 4, 5, 6].map(n => ({ value: n, label: `${n}` }));
                 return (
                     <div>
-                        <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">{stepTitle(wizardSteps.indexOf('players') + 1, 'Players & Seating')}</h2>
+                        <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">{stepTitle(1, 'Players & Seating')}</h2>
                         <div className="space-y-4">
                             <CustomSelect
                                 id="numPlayers"
@@ -238,14 +247,22 @@ export const NewGameSetup: React.FC = () => {
                                 onChange={(val) => setMap(val as any)}
                             />
                             <div>
-                                <h3 className="text-lg font-title mb-2 text-stone-800">Optional Modules</h3>
+                                <h3 className="text-lg font-title mb-2 text-stone-800">Setup & Game Options</h3>
                                 <div className="space-y-3 bg-amber-100/60 p-4 rounded-lg">
                                     <CustomCheckbox
                                         id="use-advanced-setup"
                                         label="Use Advanced Setup"
-                                        description="Draft factions for a more varied game."
+                                        description="Draft factions and use optional modules."
                                         checked={useAdvancedSetup}
                                         onChange={handleAdvancedSetupChange}
+                                    />
+                                    <CustomCheckbox
+                                        id="use-partisans-deck"
+                                        label={exilesAndPartisansDeck.title}
+                                        description={exilesAndPartisansDeck.description}
+                                        checked={usePartisansDeck}
+                                        onChange={setUsePartisansDeck}
+                                        disabled={!useAdvancedSetup}
                                     />
                                     <CustomCheckbox
                                         id="use-landmarks"
@@ -295,6 +312,18 @@ export const NewGameSetup: React.FC = () => {
                         <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">{stepTitle(wizardSteps.indexOf('map-setup') + 1, `${mapTitle} Setup`)}</h2>
                         <SetupInstructionCard blocks={mapSetupContent} />
                         <div className="flex gap-4 mt-8">
+                            <StyledButton onClick={handleBack} variant="secondary" className="w-full">Back</StyledButton>
+                            <StyledButton onClick={handleNext} className="w-full">Next</StyledButton>
+                        </div>
+                    </div>
+                );
+            }
+            case 'draw-initial-cards': {
+                return (
+                    <div>
+                        <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">{stepTitle(wizardSteps.indexOf('draw-initial-cards') + 1, 'Draw Initial Cards')}</h2>
+                        <SetupInstructionCard text="Each player draws 5 cards. You will choose your final starting hand of 3 cards after all factions have been set up." />
+                         <div className="flex gap-4 mt-8">
                             <StyledButton onClick={handleBack} variant="secondary" className="w-full">Back</StyledButton>
                             <StyledButton onClick={handleNext} className="w-full">Next</StyledButton>
                         </div>
@@ -393,7 +422,11 @@ export const NewGameSetup: React.FC = () => {
                     <div>
                         <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">{stepTitle(wizardSteps.indexOf('finalize') + 1, 'Finalize')}</h2>
                         <div className="space-y-3 text-stone-800">
-                           <p>Each player draws 3 cards.</p>
+                           {useAdvancedSetup ? (
+                             <p>Each player now chooses 3 cards to keep from their hand of 5. The other 2 are shuffled back into the deck.</p>
+                           ) : (
+                             <p>Each player draws 3 cards.</p>
+                           )}
                            <p>Place a ruin in each slot on the map marked with an 'R'.</p>
                            <p>The first player is <strong>{players[0]?.name || 'Player 1'}</strong>.</p>
                         </div>
