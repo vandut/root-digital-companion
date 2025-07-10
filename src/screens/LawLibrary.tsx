@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 import { Faction, LibraryCategory } from '../constants/types';
@@ -40,12 +39,12 @@ export const LawLibrary: React.FC = () => {
 
     const Breadcrumbs = () => {
         return (
-            <div className="flex items-center text-xl sm:text-2xl font-title font-bold text-stone-300 truncate">
+            <div className="text-lg sm:text-xl font-title font-bold text-stone-300 truncate">
                 {!selectedCategory ? (
-                    <span className="text-white">Law Library</span>
+                    <span className="text-white">Library</span>
                 ) : (
                     <Link to="/library" state={{ fromGame }} className="text-orange-400 hover:text-orange-300 transition-colors">
-                        Law Library
+                        Library
                     </Link>
                 )}
     
@@ -134,44 +133,44 @@ export const LawLibrary: React.FC = () => {
         return (
              <LibraryContainer ref={containerRef}>
                 <div className="space-y-4">
-                    {LIBRARY_DATA.map(category => (
-                        <Link
-                            key={category.id}
-                            to={`/library/${category.id}`}
-                            state={{ fromGame }}
-                            className="block w-full text-left p-6 bg-[#F1E9DA] rounded-lg shadow-md hover:bg-[#EAE1D2] transition-all focus:outline-none focus:ring-2 focus:ring-stone-600 focus:ring-offset-2 focus:ring-offset-[#D3C6B0]"
-                        >
-                            <h2 className="text-xl sm:text-2xl font-title font-bold text-stone-900">{category.title}</h2>
-                            <p className="text-stone-600 mt-1">{category.description}</p>
-                        </Link>
+                    {LIBRARY_DATA.map((category, index) => (
+                        <React.Fragment key={category.id}>
+                            {index === 3 && (
+                                <div className="relative py-2">
+                                    <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                                        <div className="w-full border-t border-orange-800/60"></div>
+                                    </div>
+                                    <div className="relative flex justify-center">
+                                        <span className="bg-[#D3C6B0] px-4 font-title text-base font-bold uppercase tracking-wider text-orange-900/80">
+                                            Optional Modules
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
+                            <Link
+                                to={`/library/${category.id}`}
+                                state={{ fromGame }}
+                                className="block w-full text-left p-6 bg-[#F1E9DA] rounded-lg shadow-md hover:bg-[#EAE1D2] transition-all focus:outline-none focus:ring-2 focus:ring-stone-600 focus:ring-offset-2 focus:ring-offset-[#D3C6B0]"
+                            >
+                                <h2 className="text-xl sm:text-2xl font-title font-bold text-stone-900">{category.title}</h2>
+                                <p className="text-stone-600 mt-1">{category.description}</p>
+                            </Link>
+                        </React.Fragment>
                     ))}
                 </div>
             </LibraryContainer>
         );
     };
 
-    const showBackButton = selectedCategory || selectedFaction;
-
     return (
         <div className="h-screen flex flex-col bg-cover bg-center bg-fixed" style={{backgroundImage: `url('${IMAGES.BACKDROP_MAIN_MENU}')`}}>
             <header className="bg-stone-900 border-b-4 border-orange-900 shadow-lg z-10 flex-shrink-0">
                 <div className="max-w-4xl mx-auto p-4 flex justify-between items-center gap-4">
-                    <div className="flex items-center gap-4 flex-1 min-w-0">
-                        {showBackButton ? (
-                            <StyledButton
-                                onClick={() => navigate(-1)}
-                                variant="icon"
-                                className="!bg-stone-700 !text-stone-100 hover:!bg-stone-600 shadow-md flex-shrink-0"
-                            >
-                               {ICONS.BACK}
-                            </StyledButton>
-                        ) : (
-                            <div className="w-10 h-10 flex-shrink-0" />
-                        )}
+                    <div className="flex-1 min-w-0">
                         <Breadcrumbs />
                     </div>
                     <StyledButton onClick={handleHeaderAction} variant="secondary">
-                      {fromGame ? 'Back to Game' : 'Main Menu'}
+                      Back
                     </StyledButton>
                 </div>
             </header>

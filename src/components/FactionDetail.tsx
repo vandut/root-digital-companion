@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Faction, GamePhase, FactionAction, OrderType } from '../constants/types';
 import { Card } from './Card';
 import { ICONS } from '../constants/icons';
@@ -26,6 +26,9 @@ const AbilityItem: React.FC<{ title: string; description: string }> = ({ title, 
 );
 
 export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpandable = true }) => {
+  const [openAction, setOpenAction] = useState<string | null>(null);
+  const [isSetupExpanded, setIsSetupExpanded] = useState(false);
+
   return (
     <div>
         <div className="text-center mb-6">
@@ -45,26 +48,47 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
             <p>{faction.howToWin}</p>
         </DetailSection>
 
-        <DetailSection title="How to Play">
-            <p>{faction.howToPlay}</p>
-        </DetailSection>
-
-        <DetailSection title="Strategy">
-            <p>{faction.strategy}</p>
-        </DetailSection>
-
         <DetailSection title="Special Abilities">
             {faction.specialAbilities.map(ability => (
                 <AbilityItem key={ability.title} title={ability.title} description={ability.description} />
             ))}
         </DetailSection>
 
-        <DetailSection title="Setup">
-            <ol className="list-decimal list-inside space-y-2">
-                {faction.setup.map((step, index) => (
-                    <li key={index}>{step}</li>
-                ))}
-            </ol>
+        <div className="mb-6">
+            <button
+                onClick={() => setIsSetupExpanded(!isSetupExpanded)}
+                className={`w-full text-left flex justify-between items-center p-3 transition-colors duration-200 bg-[#F1E9DA] focus:outline-none focus:ring-0 ${isSetupExpanded ? 'rounded-t-lg' : 'rounded-lg'}`}
+                aria-expanded={isSetupExpanded}
+                aria-controls="setup-details"
+            >
+                <p className="font-bold text-stone-800 text-base sm:text-lg">Show Faction Setup</p>
+                <span className={`transform transition-transform duration-200 flex-shrink-0 text-stone-700 ${isSetupExpanded ? 'rotate-180' : ''}`}>
+                    {ICONS.CHEVRON_DOWN}
+                </span>
+            </button>
+            {isSetupExpanded && (
+                <div id="setup-details" onClick={() => setIsSetupExpanded(false)} className="bg-[#F1E9DA] p-3 rounded-b-lg text-stone-700 cursor-pointer">
+                    <div className="pl-4 border-l-2 border-orange-800">
+                        <ol className="list-decimal list-inside space-y-2">
+                            {faction.setup.map((step, index) => (
+                                <li key={index}>{step}</li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>
+            )}
+        </div>
+        
+        <DetailSection title="Mechanics">
+            <p>{faction.mechanics}</p>
+        </DetailSection>
+
+        <DetailSection title="How to Play">
+            <p>{faction.howToPlay}</p>
+        </DetailSection>
+
+        <DetailSection title="Strategy">
+            <p>{faction.strategy}</p>
         </DetailSection>
 
         <DetailSection title="Turn Breakdown">
@@ -86,13 +110,16 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
                                             {ICONS.BULLET}
                                         </span>
                                     );
+                                    const actionKey = `${phase}-${action.title}`;
 
                                     if (isExpandable) {
                                         return (
                                             <ExpandableFactionAction 
-                                                key={action.title}
+                                                key={actionKey}
                                                 action={action}
                                                 listMarker={listMarker}
+                                                isExpanded={openAction === actionKey}
+                                                onToggle={() => setOpenAction(openAction === actionKey ? null : actionKey)}
                                             />
                                         );
                                     } else {

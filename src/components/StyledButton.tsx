@@ -14,7 +14,7 @@ export const StyledButton: React.FC<StyledButtonProps> = ({ onClick, children, d
   const variantClasses = {
     primary: 'py-2 px-4 sm:px-6 bg-orange-800 text-stone-100 hover:bg-orange-900 focus:ring-orange-700 disabled:bg-stone-400 disabled:cursor-not-allowed',
     secondary: 'py-2 px-4 sm:px-6 bg-stone-600 text-stone-100 hover:bg-stone-700 focus:ring-stone-500 disabled:bg-stone-400',
-    icon: 'p-2 rounded-full bg-stone-700 text-stone-100 hover:bg-stone-800 focus:ring-stone-600 disabled:bg-stone-400'
+    icon: 'p-2 rounded-lg bg-stone-700 text-stone-100 hover:bg-stone-800 focus:ring-stone-600 disabled:bg-stone-400'
   };
 
   return (

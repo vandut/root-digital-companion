@@ -10,7 +10,9 @@ export interface Player {
 
 export interface GameState {
   players: Player[];
-  map: 'Fall/Winter' | 'Lake/Mountain';
+  map: 'Fall' | 'Winter' | 'Lake' | 'Mountain';
+  useLandmarks: boolean;
+  useHirelings: boolean;
   currentPlayerIndex: number;
   currentPhase: GamePhase;
 }

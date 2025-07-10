@@ -1,18 +1,50 @@
-
 import { LibraryCategory } from '../types';
 
-export const advancedSetup: LibraryCategory = {
-    id: 'advanced-setup',
-    title: 'Advanced Setup',
-    description: 'An alternative setup method for experienced players.',
+export const setup: LibraryCategory = {
+    id: 'setup',
+    title: 'Setup',
+    description: 'Rules for starting a game, including the standard procedure and the advanced drafting method.',
     type: 'rules',
     topics: [
         {
+            id: 'standard-setup',
+            title: 'Standard Setup',
+            content: [
+                {
+                    subtitle: '1. Choose Factions',
+                    text: 'Each player chooses a faction. For a balanced game, the sum of the chosen factions\' Reach values (found on their faction board) should meet or exceed the recommendation for your player count:',
+                    list: [
+                        '2 Players: 17+ Reach',
+                        '3 Players: 18+ Reach',
+                        '4 Players: 21+ Reach',
+                        '5 Players: 25+ Reach',
+                        '6 Players: 28+ Reach'
+                    ]
+                },
+                {
+                    subtitle: '2. Perform Faction-Specific Setup',
+                    text: 'In turn order (determined by your playgroup, or by the faction with the highest setup order value), each player follows the setup instructions on their faction board. This will guide you on placing starting warriors, buildings, and tokens.'
+                },
+                {
+                    subtitle: '3. Place Ruins and Items',
+                    text: 'Place one ruin token on each clearing with a printed \'R\' symbol. If using the corresponding expansion, place the item tokens under the ruins.'
+                },
+                {
+                    subtitle: '4. Deal Starting Hands',
+                    text: 'Each player draws three cards from the shared deck to form their starting hand.'
+                },
+                {
+                    subtitle: '5. Determine First Player',
+                    text: 'The player who placed their pieces first (or the player with the highest setup order value) takes the first turn.'
+                }
+            ]
+        },
+        {
             id: 'advanced-setup-procedure',
-            title: 'Advanced Setup Procedure',
+            title: 'Advanced Setup',
             content: [
                 { 
-                    text: 'For experienced players seeking more variety, the Advanced Setup (Appendix A) replaces the standard setup. It introduces a faction draft and optional modules to ensure games are balanced and interesting. The steps are as follows:'
+                    text: 'For experienced players seeking more variety, this method replaces the standard faction selection. It introduces a faction draft and optional modules to ensure games are balanced and interesting. The steps are as follows:'
                 },
                 {
                     subtitle: '1. Choose and Set Up Map',

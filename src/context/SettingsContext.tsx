@@ -8,7 +8,7 @@ interface Settings {
 }
 
 const defaultSettings: Settings = {
-  preventScreenLock: true,
+  preventScreenLock: false,
 };
 
 interface SettingsContextType {

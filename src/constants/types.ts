@@ -45,6 +45,7 @@ export interface Faction {
   type: 'Militant' | 'Insurgent';
   tagline: string;
   howToWin: string;
+  mechanics: string;
   howToPlay: string;
   strategy: string;
   specialAbilities: { title: string; description: string }[];

@@ -169,7 +169,7 @@ export const TurnDashboard: React.FC = () => {
             <footer className="fixed bottom-0 left-0 right-0 bg-stone-800 text-white shadow-t-lg p-3">
                 <div className="max-w-5xl mx-auto flex justify-between items-center">
                     <div className="flex gap-2">
-                        <StyledButton onClick={() => navigate('/library', { state: { fromGame: true } })} variant="icon" aria-label="Law Library">{ICONS.LAW}</StyledButton>
+                        <StyledButton onClick={() => navigate('/library', { state: { fromGame: true } })} variant="icon" aria-label="Library">{ICONS.LAW}</StyledButton>
                         <StyledButton onClick={() => openModal('players')} variant="icon" aria-label="Players">{ICONS.PLAYERS}</StyledButton>
                         <StyledButton onClick={handleExitGame} variant="icon" aria-label="Exit Game">{ICONS.EXIT}</StyledButton>
                     </div>
