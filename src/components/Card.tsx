@@ -6,7 +6,7 @@ interface CardProps {
   padding?: string;
 }
 
-export const Card: React.FC<CardProps> = ({ children, className = '', padding = 'p-6' }) => {
+export const Card: React.FC<CardProps> = ({ children, className = '', padding = 'p-4 sm:p-6' }) => {
   return (
     <div className={`bg-stone-50 border border-stone-400 rounded-lg shadow-xl ${padding} ${className}`}>
       {children}

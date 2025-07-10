@@ -89,7 +89,7 @@ export const LawLibrary: React.FC = () => {
                                         state={{ fromGame }}
                                         className="block w-full h-full text-left p-4 bg-[#F1E9DA] rounded-lg shadow-md hover:bg-[#EAE1D2] transition-all"
                                     >
-                                        <span className="text-xl font-title font-bold text-stone-900">{faction.name}</span>
+                                        <span className="text-lg sm:text-xl font-title font-bold text-stone-900">{faction.name}</span>
                                         <p className="text-sm text-stone-600 mt-1">{faction.tagline}</p>
                                         <p className="text-xs text-stone-500 mt-2">
                                             <strong className="font-semibold">Reach:</strong> {faction.reach} &bull; <strong className="font-semibold">Type:</strong>{' '}
@@ -109,11 +109,11 @@ export const LawLibrary: React.FC = () => {
                     <div className="space-y-8">
                         {selectedCategory.topics?.map(topic => (
                             <div key={topic.id}>
-                                <h2 className="text-3xl font-bold font-title text-orange-900 border-b-2 border-orange-800 pb-2 mb-4">{topic.title}</h2>
+                                <h2 className="text-2xl sm:text-3xl font-bold font-title text-orange-900 border-b-2 border-orange-800 pb-2 mb-4">{topic.title}</h2>
                                 <div className="space-y-5 text-stone-800">
                                     {topic.content.map((block, index) => (
                                         <div key={index}>
-                                            {block.subtitle && <h3 className="text-xl font-bold font-title text-stone-800 mb-2">{block.subtitle}</h3>}
+                                            {block.subtitle && <h3 className="text-lg sm:text-xl font-bold font-title text-stone-800 mb-2">{block.subtitle}</h3>}
                                             <p className={`${block.subtitle ? 'pl-4 border-l-4 border-orange-800' : ''} leading-relaxed`}>{block.text}</p>
                                             {block.list && (
                                                 <ul className="list-disc list-inside space-y-1 mt-2 pl-8">
@@ -141,7 +141,7 @@ export const LawLibrary: React.FC = () => {
                             state={{ fromGame }}
                             className="block w-full text-left p-6 bg-[#F1E9DA] rounded-lg shadow-md hover:bg-[#EAE1D2] transition-all focus:outline-none focus:ring-2 focus:ring-stone-600 focus:ring-offset-2 focus:ring-offset-[#D3C6B0]"
                         >
-                            <h2 className="text-2xl font-title font-bold text-stone-900">{category.title}</h2>
+                            <h2 className="text-xl sm:text-2xl font-title font-bold text-stone-900">{category.title}</h2>
                             <p className="text-stone-600 mt-1">{category.description}</p>
                         </Link>
                     ))}

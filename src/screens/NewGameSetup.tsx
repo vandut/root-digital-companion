@@ -107,7 +107,7 @@ export const NewGameSetup: React.FC = () => {
                 ];
                 return (
                     <div>
-                        <h2 className="text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">Step 1: Players & Map</h2>
+                        <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">Step 1: Players & Map</h2>
                         <div className="space-y-4">
                             <CustomSelect
                                 id="numPlayers"
@@ -143,7 +143,7 @@ export const NewGameSetup: React.FC = () => {
             case 2: // Faction Selection
                 return (
                     <div>
-                        <h2 className="text-3xl font-title mb-2 uppercase tracking-wider text-stone-900">Step 2: Factions</h2>
+                        <h2 className="text-2xl sm:text-3xl font-title mb-2 uppercase tracking-wider text-stone-900">Step 2: Factions</h2>
                         <p className="mb-4 text-stone-700">Total Reach: <span className={`font-bold ${totalReach < recommendedReach ? 'text-red-600' : 'text-green-600'}`}>{totalReach}</span> / {recommendedReach}+ Recommended</p>
                         {players.map((player, index) => {
                             const factionOptions = getFactionOptionsForPlayer(index);
@@ -168,9 +168,9 @@ export const NewGameSetup: React.FC = () => {
             case 3: // Faction-Specific Setup
                 return (
                     <div>
-                        <h2 className="text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">Step 3: Setup</h2>
+                        <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">Step 3: Setup</h2>
                         <p className="text-stone-700 mb-4">Follow these instructions for each player in turn order.</p>
-                        <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
+                        <div className="space-y-4 max-h-80 sm:max-h-96 overflow-y-auto pr-2">
                            {players.map((player, index) => (
                                 <Card key={index} padding="p-4" className="bg-amber-100/60">
                                     <h3 className="font-bold text-lg text-stone-900">{player.name}: The {FACTIONS[player.factionId!].name}</h3>
@@ -191,7 +191,7 @@ export const NewGameSetup: React.FC = () => {
             case 4: // Finalize
                 return (
                     <div>
-                        <h2 className="text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">Step 4: Finalize</h2>
+                        <h2 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900">Step 4: Finalize</h2>
                         <div className="space-y-3 text-stone-800">
                            <p>Each player draws 3 cards.</p>
                            <p>Place a ruin in each slot on the map marked with an 'R'.</p>
@@ -210,7 +210,7 @@ export const NewGameSetup: React.FC = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-fixed" style={{ backgroundImage: `url('${IMAGES.BACKDROP_MAIN_MENU}')` }}>
-            <div className="bg-amber-50/80 backdrop-blur-md p-8 rounded-xl shadow-2xl w-11/12 sm:w-full max-w-lg border-4 border-stone-800">
+            <div className="bg-amber-50/80 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-2xl w-11/12 sm:w-full max-w-lg border-4 border-stone-800">
                 {renderStep()}
             </div>
         </div>

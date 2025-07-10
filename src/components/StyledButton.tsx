@@ -1,4 +1,3 @@
-
 import React, { ReactNode } from 'react';
 
 interface StyledButtonProps {
@@ -10,7 +9,7 @@ interface StyledButtonProps {
 }
 
 export const StyledButton: React.FC<StyledButtonProps> = ({ onClick, children, disabled = false, className = '', variant = 'primary' }) => {
-  const baseClasses = 'font-title font-bold rounded-lg shadow-md transition-all duration-200 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-amber-50';
+  const baseClasses = 'text-sm sm:text-base font-title font-bold rounded-lg shadow-md transition-all duration-200 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-amber-50';
   
   const variantClasses = {
     primary: 'py-2 px-4 sm:px-6 bg-orange-800 text-stone-100 hover:bg-orange-900 focus:ring-orange-700 disabled:bg-stone-400 disabled:cursor-not-allowed',

@@ -13,8 +13,8 @@ export const SettingsScreen: React.FC = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-fixed" style={{ backgroundImage: `url('${IMAGES.BACKDROP_MAIN_MENU}')` }}>
-            <div className="bg-amber-50/80 backdrop-blur-md p-8 rounded-xl shadow-2xl w-11/12 sm:w-full max-w-lg border-4 border-stone-800">
-                <h1 className="text-3xl font-title mb-6 uppercase tracking-wider text-stone-900 text-center">Settings</h1>
+            <div className="bg-amber-50/80 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-2xl w-11/12 sm:w-full max-w-lg border-4 border-stone-800">
+                <h1 className="text-2xl sm:text-3xl font-title mb-6 uppercase tracking-wider text-stone-900 text-center">Settings</h1>
                 
                 <Card className="bg-amber-100/60" padding="p-0">
                     <CustomCheckbox

@@ -107,7 +107,7 @@ export const TurnDashboard: React.FC = () => {
                                 {listMarker}
                             </div>
                             <button onClick={() => openModal('actionDetail', action)} className="flex-grow text-left w-full p-3 rounded-lg transition-colors duration-200 bg-stone-100/50 hover:bg-stone-200/70 focus:outline-none">
-                                <p className="font-bold text-stone-900 text-lg">{action.title}</p>
+                                <p className="font-bold text-stone-900 text-base sm:text-lg">{action.title}</p>
                                 <p className="text-sm text-stone-600">{action.description}</p>
                             </button>
                         </div>
@@ -123,15 +123,15 @@ export const TurnDashboard: React.FC = () => {
             <div className="max-w-5xl mx-auto pb-24">
                 {/* Header */}
                 <header className="mb-6">
-                    <p className="text-lg text-stone-600">Player's Turn:</p>
-                    <h1 className="text-4xl font-title font-bold text-stone-900">{currentPlayer.name}</h1>
-                    <p className="text-2xl font-semibold text-orange-800">{currentFaction.name}</p>
+                    <p className="text-base sm:text-lg text-stone-600">Player's Turn:</p>
+                    <h1 className="text-3xl sm:text-4xl font-title font-bold text-stone-900">{currentPlayer.name}</h1>
+                    <p className="text-xl sm:text-2xl font-semibold text-orange-800">{currentFaction.name}</p>
                 </header>
 
                 {/* Player Switcher */}
-                <Card className="mb-6" padding="p-4">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="text-lg font-bold font-title text-stone-800 mr-2">Players:</h3>
+                <Card className="mb-6" padding="p-3 sm:p-4">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                        <h3 className="text-base sm:text-lg font-bold font-title text-stone-800 mr-2">Players:</h3>
                         {players.map((p, index) => (
                             <StyledButton
                                 key={p.id}
@@ -149,7 +149,7 @@ export const TurnDashboard: React.FC = () => {
                 {/* Phase Indicator */}
                 <div className="flex justify-start sm:justify-center border-b-2 border-stone-300 mb-6 overflow-x-auto hide-scrollbar">
                 {Object.values(GamePhase).map(phase => (
-                    <button key={phase} onClick={() => setPhase(phase)} className={`font-title text-xl py-2 px-6 whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:bg-stone-200/50 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900 font-bold' : 'border-b-4 border-transparent text-stone-500 hover:text-stone-700'}`}>
+                    <button key={phase} onClick={() => setPhase(phase)} className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:bg-stone-200/50 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900 font-bold' : 'border-b-4 border-transparent text-stone-500 hover:text-stone-700'}`}>
                         {phase}
                     </button>
                 ))}
@@ -157,7 +157,7 @@ export const TurnDashboard: React.FC = () => {
 
                 {/* Main Content Area */}
                 <Card>
-                    <h2 className="text-2xl font-title mb-4">Actions for {currentPhase}</h2>
+                    <h2 className="text-xl sm:text-2xl font-title mb-4">Actions for {currentPhase}</h2>
                     {phaseData.actions.length > 0 ? (
                         renderActions()
                     ) : <p className="text-stone-500 italic">No specific actions for this phase.</p>}

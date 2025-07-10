@@ -32,7 +32,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
     >
       <Card className={`w-full ${sizeClass} max-h-[90vh] overflow-y-auto bg-amber-50 border-2 border-stone-500 shadow-2xl`}>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-stone-900">{title}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-stone-900">{title}</h2>
           <StyledButton onClick={onClose} variant="secondary" className="!py-1 !px-3">Close</StyledButton>
         </div>
         {children}

@@ -12,7 +12,7 @@ interface FactionDetailProps {
 
 const DetailSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
     <div className="mb-6">
-        <h3 className="font-title text-xl font-bold text-orange-900 border-b-2 border-orange-800 pb-2 mb-3">{title}</h3>
+        <h3 className="font-title text-lg sm:text-xl font-bold text-orange-900 border-b-2 border-orange-800 pb-2 mb-3">{title}</h3>
         <div className="text-stone-700 space-y-2 leading-relaxed">
             {children}
         </div>
@@ -29,7 +29,7 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
   return (
     <div>
         <div className="text-center mb-6">
-            <h2 className="text-4xl font-bold text-stone-900">{faction.name}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900">{faction.name}</h2>
             <p className="text-stone-600 italic mt-1">{faction.tagline}</p>
             <div className="mt-3 text-sm text-stone-800">
                 <span className="font-semibold">Reach:</span> {faction.reach}
@@ -73,7 +73,7 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
                     let orderedActionCounter = 1;
                     return (
                         <div key={phase} className="bg-[#EAE1D2] p-4 rounded-lg">
-                            <h4 className="font-title text-lg font-bold text-stone-800 mb-2">{phase}</h4>
+                            <h4 className="font-title text-base sm:text-lg font-bold text-stone-800 mb-2">{phase}</h4>
                             <div className="space-y-3">
                                 {faction.turn[phase].actions.map((action) => {
                                     const number = action.order === OrderType.ORDERED ? orderedActionCounter++ : null;

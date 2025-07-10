@@ -23,7 +23,7 @@ export const ExpandableFactionAction: React.FC<ExpandableFactionActionProps> = (
           aria-controls={actionId}
         >
           <div className="pr-4">
-            <p className="font-bold text-stone-800 text-lg">{action.title}</p>
+            <p className="font-bold text-stone-800 text-base sm:text-lg">{action.title}</p>
             <p className="text-sm text-stone-600">{action.description}</p>
           </div>
           <span className={`transform transition-transform duration-200 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
