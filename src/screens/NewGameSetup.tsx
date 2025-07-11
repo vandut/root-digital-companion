@@ -37,7 +37,6 @@ export const NewGameSetup: React.FC = () => {
         if (!checked) {
             setUseLandmarks(false);
             setUseHirelings(false);
-            setUsePartisansDeck(false);
         }
     };
     
@@ -250,19 +249,18 @@ export const NewGameSetup: React.FC = () => {
                                 <h3 className="text-lg font-title mb-2 text-stone-800">Setup & Game Options</h3>
                                 <div className="space-y-3 bg-amber-100/60 p-4 rounded-lg">
                                     <CustomCheckbox
-                                        id="use-advanced-setup"
-                                        label="Use Advanced Setup"
-                                        description="Draft factions and use optional modules."
-                                        checked={useAdvancedSetup}
-                                        onChange={handleAdvancedSetupChange}
-                                    />
-                                    <CustomCheckbox
                                         id="use-partisans-deck"
                                         label={exilesAndPartisansDeck.title}
                                         description={exilesAndPartisansDeck.description}
                                         checked={usePartisansDeck}
                                         onChange={setUsePartisansDeck}
-                                        disabled={!useAdvancedSetup}
+                                    />
+                                    <CustomCheckbox
+                                        id="use-advanced-setup"
+                                        label="Use Advanced Setup"
+                                        description="Draft factions and use optional modules."
+                                        checked={useAdvancedSetup}
+                                        onChange={handleAdvancedSetupChange}
                                     />
                                     <CustomCheckbox
                                         id="use-landmarks"

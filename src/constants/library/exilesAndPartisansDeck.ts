@@ -11,7 +11,7 @@ export const exilesAndPartisansDeck: LibraryCategory = {
             title: 'Overview',
             content: [
                 {
-                    text: 'As part of Advanced Setup, players may agree to replace the standard 54-card deck with the Exiles and Partisans Deck. This alternative deck features different card effects, many of which are more interactive, aggressive, and unpredictable than the standard deck. It is designed to encourage more dynamic games and is recommended for players familiar with the base game.'
+                    text: 'Players may agree to replace the standard 54-card deck with the Exiles and Partisans Deck. This alternative deck can be used with both standard and advanced setup, and features different card effects, many of which are more interactive, aggressive, and unpredictable. It is designed to encourage more dynamic games and is recommended for players familiar with the base game.'
                 }
             ]
         },
