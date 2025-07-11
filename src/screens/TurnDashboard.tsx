@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useGame } from '../hooks/useGame';
 import { Card } from '../components/Card';
 import { Player } from '../types';
@@ -168,7 +168,13 @@ export const TurnDashboard: React.FC = () => {
                             <p className="text-sm text-stone-400">Player's Turn:</p>
                             <h1 className="text-xl sm:text-2xl font-title font-bold text-white leading-tight">{currentPlayer.name}</h1>
                         </div>
-                        <p className="text-xl sm:text-2xl text-orange-400 leading-tight font-title font-bold">{currentFaction.name}</p>
+                        <Link
+                            to={`/library/factions/${currentFaction.id}`}
+                            state={{ fromGame: true }}
+                            className="text-xl sm:text-2xl text-orange-400 hover:text-orange-300 transition-colors leading-tight font-title font-bold"
+                        >
+                            {currentFaction.name}
+                        </Link>
                     </div>
                 </div>
             </header>
