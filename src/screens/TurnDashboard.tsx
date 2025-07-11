@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../hooks/useGame';
@@ -10,6 +11,7 @@ import { FactionDetail } from '../components/FactionDetail';
 import { FACTIONS } from '../constants/factions';
 import { ICONS } from '../constants/icons';
 import { IMAGES } from '../constants/images';
+import { LibraryContainer } from '../components/LibraryContainer';
 
 export const TurnDashboard: React.FC = () => {
     const navigate = useNavigate();
@@ -172,11 +174,11 @@ export const TurnDashboard: React.FC = () => {
             </header>
             
             <main className="flex-1 max-w-5xl mx-auto w-full overflow-hidden sm:p-6 lg:p-8 flex flex-col">
-                <div className="bg-[#D3C6B0] p-4 h-full flex flex-col overflow-y-auto sm:bg-[#D3C6B0]/95 sm:backdrop-blur-sm sm:p-6 sm:rounded-lg sm:shadow-2xl sm:border-2 sm:border-stone-800 sm:h-auto sm:max-h-full">
+                <LibraryContainer>
                     
                     {/* Player Switcher */}
                     <div className="flex-shrink-0">
-                        <Card className="mb-6 bg-[#F1E9DA]" padding="p-3 sm:p-4">
+                        <Card className="mb-6" padding="p-3 sm:p-4">
                             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                                 {players.map((p, index) => (
                                     <StyledButton
@@ -214,7 +216,7 @@ export const TurnDashboard: React.FC = () => {
 
                     {/* Main Content Area */}
                     <div className="flex-grow">
-                        <Card className="bg-[#F1E9DA]">
+                        <Card>
                             <h2 className="text-xl sm:text-2xl font-title mb-4">Actions for {currentPhase}</h2>
                             {phaseData.actions.length > 0 ? (
                                 renderActions()
@@ -222,7 +224,7 @@ export const TurnDashboard: React.FC = () => {
                         </Card>
                     </div>
 
-                </div>
+                </LibraryContainer>
             </main>
 
             {/* Bottom Navigation */}

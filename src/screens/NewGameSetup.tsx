@@ -178,7 +178,7 @@ export const NewGameSetup: React.FC = () => {
     };
 
     const SetupInstructionCard: React.FC<{ blocks?: LibraryContentBlock[], text?: string | React.ReactNode }> = ({ blocks, text }) => (
-        <Card padding="p-4" className="bg-amber-100/60 max-h-[26rem] overflow-y-auto pr-2">
+        <Card padding="p-4" className="bg-[#F5EAC7] max-h-[26rem] overflow-y-auto pr-2">
             <div className="space-y-3 text-stone-800">
                 {text && <p className="leading-relaxed">{text}</p>}
                 {blocks?.map((block, index) => (
@@ -401,7 +401,7 @@ export const NewGameSetup: React.FC = () => {
                         <p className="text-stone-700 mb-4">Follow these instructions for each player in turn order.</p>
                         <div className="space-y-4 max-h-80 sm:max-h-96 overflow-y-auto pr-2">
                            {players.map((player, index) => (
-                                <Card key={index} padding="p-4" className="bg-amber-100/60">
+                                <Card key={index} padding="p-4" className="bg-[#F5EAC7]">
                                     <h3 className="font-bold text-lg text-stone-900">{player.name}: The {FACTIONS[player.factionId!].name}</h3>
                                     <ol className="list-decimal list-inside mt-2 space-y-1 text-stone-800">
                                         {FACTIONS[player.factionId!].setup.map((stepText, i) => (
