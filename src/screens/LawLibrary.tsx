@@ -175,7 +175,7 @@ export const LawLibrary: React.FC = () => {
                 </div>
             </header>
 
-            <main className="max-w-4xl mx-auto w-full flex-grow flex flex-col overflow-hidden sm:p-8">
+            <main className="max-w-4xl mx-auto w-full flex-1 flex flex-col overflow-hidden sm:p-8">
                 {renderContent()}
             </main>
         </div>

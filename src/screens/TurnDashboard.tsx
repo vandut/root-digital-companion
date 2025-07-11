@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../hooks/useGame';
 import { Card } from '../components/Card';
@@ -10,29 +9,32 @@ import { Modal } from '../components/Modal';
 import { FactionDetail } from '../components/FactionDetail';
 import { FACTIONS } from '../constants/factions';
 import { ICONS } from '../constants/icons';
+import { IMAGES } from '../constants/images';
 
 export const TurnDashboard: React.FC = () => {
     const navigate = useNavigate();
     const { gameState, nextPhase, endTurn, setPhase, setCurrentPlayer } = useGame();
     const [modalStack, setModalStack] = useState<{ type: string; data?: any }[]>([]);
 
+    const phaseContainerRef = useRef<HTMLDivElement>(null);
+    const phaseTabRefs = useRef<Map<GamePhase, HTMLButtonElement | null>>(new Map());
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
     const openModal = (type: string, data?: any) => {
-        // Push a dummy state into history so the back button is intercepted.
         window.history.pushState({ modal: true }, '');
         setModalStack(stack => [...stack, { type, data }]);
     };
 
     const closeModal = () => {
-        // Programmatically go back, which triggers the 'popstate' event handler.
         if (modalStack.length > 0) {
             window.history.back();
         }
     };
 
     useEffect(() => {
-        // This listener handles the 'popstate' event (triggered by back button or history.back()).
         const handlePopState = () => {
-            // Sync the modal stack with the history change.
             setModalStack(stack => stack.slice(0, -1));
         };
 
@@ -41,11 +43,10 @@ export const TurnDashboard: React.FC = () => {
         return () => {
             window.removeEventListener('popstate', handlePopState);
         };
-    }, []); // This effect runs once on mount to set up the listener.
+    }, []); 
 
 
     useEffect(() => {
-        // This listener handles the Escape key to close modals.
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === 'Escape' && modalStack.length > 0) {
                 closeModal();
@@ -55,8 +56,36 @@ export const TurnDashboard: React.FC = () => {
         return () => {
             document.removeEventListener('keydown', handleEscape);
         };
-    }, [modalStack]); // Re-add listener if modalStack changes, to get the correct length.
-    
+    }, [modalStack]); 
+
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!phaseContainerRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - phaseContainerRef.current.offsetLeft);
+        setScrollLeft(phaseContainerRef.current.scrollLeft);
+        phaseContainerRef.current.style.cursor = 'grabbing';
+    };
+
+    const handleMouseLeave = () => {
+        if (!phaseContainerRef.current) return;
+        setIsDragging(false);
+        phaseContainerRef.current.style.cursor = 'grab';
+    };
+
+    const handleMouseUp = () => {
+        if (!phaseContainerRef.current) return;
+        setIsDragging(false);
+        phaseContainerRef.current.style.cursor = 'grab';
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isDragging || !phaseContainerRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - phaseContainerRef.current.offsetLeft;
+        const walk = (x - startX) * 2;
+        phaseContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
     if (!gameState) {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
@@ -67,6 +96,16 @@ export const TurnDashboard: React.FC = () => {
     }
 
     const { players, currentPlayerIndex, currentPhase } = gameState;
+
+    useEffect(() => {
+        const activeTab = phaseTabRefs.current.get(currentPhase);
+        if (activeTab && phaseContainerRef.current) {
+            const container = phaseContainerRef.current;
+            const scrollLeft = activeTab.offsetLeft - (container.offsetWidth / 2) + (activeTab.offsetWidth / 2);
+            container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+    }, [currentPhase]);
+
     const currentPlayer = players[currentPlayerIndex];
     const currentFaction = FACTIONS[currentPlayer.factionId];
     const phaseData = currentFaction.turn[currentPhase];
@@ -106,7 +145,7 @@ export const TurnDashboard: React.FC = () => {
                             <div className="flex-shrink-0 w-8 flex justify-center">
                                 {listMarker}
                             </div>
-                            <button onClick={() => openModal('actionDetail', action)} className="flex-grow text-left w-full p-3 rounded-lg transition-colors duration-200 bg-stone-100/50 hover:bg-stone-200/70 focus:outline-none">
+                            <button onClick={() => openModal('actionDetail', action)} className="flex-grow text-left w-full p-3 rounded-lg transition-colors duration-200 bg-[#EAE1D2] focus:outline-none">
                                 <p className="font-bold text-stone-900 text-base sm:text-lg">{action.title}</p>
                                 <p className="text-sm text-stone-600">{action.description}</p>
                             </button>
@@ -119,54 +158,75 @@ export const TurnDashboard: React.FC = () => {
 
 
     return (
-        <div className="min-h-screen bg-stone-100 p-4 sm:p-6 lg:p-8">
-            <div className="max-w-5xl mx-auto pb-24">
-                {/* Header */}
-                <header className="mb-6">
-                    <p className="text-base sm:text-lg text-stone-600">Player's Turn:</p>
-                    <h1 className="text-3xl sm:text-4xl font-title font-bold text-stone-900">{currentPlayer.name}</h1>
-                    <p className="text-xl sm:text-2xl font-semibold text-orange-800">{currentFaction.name}</p>
-                </header>
-
-                {/* Player Switcher */}
-                <Card className="mb-6" padding="p-3 sm:p-4">
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                        <h3 className="text-base sm:text-lg font-bold font-title text-stone-800 mr-2">Players:</h3>
-                        {players.map((p, index) => (
-                            <StyledButton
-                                key={p.id}
-                                onClick={() => setCurrentPlayer(index)}
-                                disabled={index === currentPlayerIndex}
-                                variant={index === currentPlayerIndex ? 'primary' : 'secondary'}
-                                className="!py-1 !px-3"
-                            >
-                                {p.name}
-                            </StyledButton>
-                        ))}
+        <div className="h-screen flex flex-col bg-cover bg-center bg-fixed" style={{backgroundImage: `url('${IMAGES.BACKDROP_MAIN_MENU}')`}}>
+            <header className="bg-stone-900 text-white p-3 border-b-4 border-orange-900 shadow-lg z-20 flex-shrink-0">
+                <div className="max-w-5xl mx-auto flex justify-between items-center">
+                    <div className="flex items-end gap-4">
+                        <div className="text-left">
+                            <p className="text-sm text-stone-400">Player's Turn:</p>
+                            <h1 className="text-xl sm:text-2xl font-title font-bold text-white leading-tight">{currentPlayer.name}</h1>
+                        </div>
+                        <p className="text-xl sm:text-2xl text-orange-400 leading-tight font-title font-bold">{currentFaction.name}</p>
                     </div>
-                </Card>
-                
-                {/* Phase Indicator */}
-                <div className="flex justify-start sm:justify-center border-b-2 border-stone-300 mb-6 overflow-x-auto hide-scrollbar">
-                {Object.values(GamePhase).map(phase => (
-                    <button key={phase} onClick={() => setPhase(phase)} className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:bg-stone-200/50 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900 font-bold' : 'border-b-4 border-transparent text-stone-500 hover:text-stone-700'}`}>
-                        {phase}
-                    </button>
-                ))}
                 </div>
+            </header>
+            
+            <main className="flex-1 max-w-5xl mx-auto w-full overflow-hidden sm:p-6 lg:p-8 flex flex-col">
+                <div className="bg-[#D3C6B0] p-4 h-full flex flex-col overflow-y-auto sm:bg-[#D3C6B0]/95 sm:backdrop-blur-sm sm:p-6 sm:rounded-lg sm:shadow-2xl sm:border-2 sm:border-stone-800 sm:h-auto sm:max-h-full">
+                    
+                    {/* Player Switcher */}
+                    <div className="flex-shrink-0">
+                        <Card className="mb-6 bg-[#F1E9DA]" padding="p-3 sm:p-4">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                                {players.map((p, index) => (
+                                    <StyledButton
+                                        key={p.id}
+                                        onClick={() => setCurrentPlayer(index)}
+                                        disabled={index === currentPlayerIndex}
+                                        variant={index === currentPlayerIndex ? 'primary' : 'secondary'}
+                                        className="!py-1 !px-3"
+                                    >
+                                        {p.name}
+                                    </StyledButton>
+                                ))}
+                            </div>
+                        </Card>
+                    </div>
+                    
+                    {/* Phase Indicator */}
+                    <div 
+                        ref={phaseContainerRef}
+                        onMouseDown={handleMouseDown}
+                        onMouseLeave={handleMouseLeave}
+                        onMouseUp={handleMouseUp}
+                        onMouseMove={handleMouseMove}
+                        className="flex-shrink-0 flex justify-start sm:justify-center border-b-2 border-stone-500 mb-6 overflow-x-auto hide-scrollbar cursor-grab select-none">
+                    {Object.values(GamePhase).map(phase => (
+                        <button 
+                            key={phase} 
+                            ref={el => { phaseTabRefs.current.set(phase, el); }}
+                            onClick={() => setPhase(phase)} 
+                            className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-all duration-200 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900 font-bold' : 'border-b-4 border-transparent text-stone-600'}`}>
+                            {phase}
+                        </button>
+                    ))}
+                    </div>
 
-                {/* Main Content Area */}
-                <Card>
-                    <h2 className="text-xl sm:text-2xl font-title mb-4">Actions for {currentPhase}</h2>
-                    {phaseData.actions.length > 0 ? (
-                        renderActions()
-                    ) : <p className="text-stone-500 italic">No specific actions for this phase.</p>}
-                </Card>
+                    {/* Main Content Area */}
+                    <div className="flex-grow">
+                        <Card className="bg-[#F1E9DA]">
+                            <h2 className="text-xl sm:text-2xl font-title mb-4">Actions for {currentPhase}</h2>
+                            {phaseData.actions.length > 0 ? (
+                                renderActions()
+                            ) : <p className="text-stone-500 italic">No specific actions for this phase.</p>}
+                        </Card>
+                    </div>
 
-            </div>
+                </div>
+            </main>
 
             {/* Bottom Navigation */}
-            <footer className="fixed bottom-0 left-0 right-0 bg-stone-800 text-white shadow-t-lg p-3">
+            <footer className="bg-stone-900 text-white p-3 border-t-4 border-orange-900 shadow-lg z-10 flex-shrink-0">
                 <div className="max-w-5xl mx-auto flex justify-between items-center">
                     <div className="flex gap-2">
                         <StyledButton onClick={() => navigate('/library', { state: { fromGame: true } })} variant="icon" aria-label="Library">{ICONS.LAW}</StyledButton>
@@ -189,7 +249,7 @@ export const TurnDashboard: React.FC = () => {
                     children = (
                         <div className="space-y-2">
                             {players.map((p) => (
-                                <div key={p.id} className="flex justify-between items-center p-2 bg-stone-100 rounded-md">
+                                <div key={p.id} className="flex justify-between items-center p-2 bg-[#EAE1D2] rounded-md">
                                     <div className="flex items-baseline">
                                         <span className={`font-bold ${p.id === currentPlayer.id ? 'text-orange-800' : ''}`}>{p.name}</span>
                                         <span className="text-sm text-stone-600 ml-2">- {FACTIONS[p.factionId].name}</span>

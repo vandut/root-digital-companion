@@ -1,5 +1,6 @@
 
 import React, { createContext, useState, useEffect, ReactNode, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const SETTINGS_STORAGE_KEY = 'root-companion:v1:settings';
 
@@ -29,12 +30,15 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
   });
 
   const wakeLock = useRef<WakeLockSentinel | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+    
+    const isGameScreen = location.pathname === '/game';
 
     const manageWakeLock = async () => {
-      if (settings.preventScreenLock && 'wakeLock' in navigator) {
+      if (settings.preventScreenLock && isGameScreen && 'wakeLock' in navigator) {
         if (wakeLock.current === null) {
           try {
             wakeLock.current = await navigator.wakeLock.request('screen');
@@ -56,7 +60,7 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
     manageWakeLock();
 
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible' && settings.preventScreenLock) {
+      if (document.visibilityState === 'visible' && settings.preventScreenLock && isGameScreen) {
         manageWakeLock();
       }
     };
@@ -70,7 +74,7 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
       }
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [settings]);
+  }, [settings, location.pathname]);
 
 
   const updateSetting = (key: keyof Settings, value: boolean) => {
