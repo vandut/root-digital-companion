@@ -180,15 +180,15 @@ export const TurnDashboard: React.FC = () => {
         <div className="h-screen flex flex-col bg-cover bg-center bg-fixed" style={{backgroundImage: `url('${IMAGES.BACKDROP_MAIN_MENU}')`}}>
             <header className="bg-stone-900 text-white p-3 border-b-4 border-orange-900 shadow-lg z-20 flex-shrink-0">
                 <div className="max-w-5xl mx-auto flex justify-between items-center">
-                    <div className="flex items-end gap-4">
-                        <div className="text-left">
+                    <div className="flex items-end gap-4 min-w-0">
+                        <div className="text-left flex-shrink-0">
                             <p className="text-sm text-stone-400">{UI_TEXT.turnDashboard.playersTurn}</p>
-                            <h1 className="text-xl sm:text-2xl font-title font-bold text-white leading-tight">{currentPlayer.name}</h1>
+                            <h1 className="text-xl sm:text-2xl font-title font-bold text-white leading-tight whitespace-nowrap">{currentPlayer.name}</h1>
                         </div>
                         <Link
                             to={`/library/factions/${currentFaction.id}`}
                             state={{ fromGame: true }}
-                            className="text-xl sm:text-2xl text-orange-400 hover:text-orange-300 transition-colors leading-tight font-title font-bold"
+                            className="text-xl sm:text-2xl text-orange-400 hover:text-orange-300 transition-colors leading-tight font-title font-bold truncate"
                         >
                             {currentFaction.name}
                         </Link>
