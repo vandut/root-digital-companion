@@ -138,7 +138,7 @@ export const NewGameSetup: React.FC = () => {
             currentPlayerIndex: 0,
             currentPhase: GamePhase.BIRDSONG,
         });
-        navigate('/game');
+        navigate('/game', { replace: true });
     };
     
     const getFactionOptionsForPlayer = (playerIndex: number) => {

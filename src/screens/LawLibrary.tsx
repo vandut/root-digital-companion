@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 import { Faction, LibraryCategory, FactionType } from '../constants/types';
@@ -36,7 +35,7 @@ export const LawLibrary: React.FC = () => {
 
     const handleHeaderAction = () => {
         if (fromGame) {
-            navigate('/game');
+            navigate('/game', { replace: true });
         } else {
             navigate('/', { replace: true });
         }
@@ -48,7 +47,7 @@ export const LawLibrary: React.FC = () => {
                 {!selectedCategory ? (
                     <span className="text-white">{UI_TEXT.lawLibrary.library}</span>
                 ) : (
-                    <Link to="/library" state={{ fromGame }} className="text-orange-400 hover:text-orange-300 transition-colors">
+                    <Link to="/library" state={{ fromGame }} className="text-orange-400 hover:text-orange-300 transition-colors" replace={true}>
                         {UI_TEXT.lawLibrary.library}
                     </Link>
                 )}
@@ -59,7 +58,7 @@ export const LawLibrary: React.FC = () => {
                         {!selectedFaction ? (
                             <span className="text-white">{selectedCategory.title}</span>
                         ) : (
-                            <Link to={`/library/${selectedCategory.id}`} state={{ fromGame }} className="text-orange-400 hover:text-orange-300 transition-colors">
+                            <Link to={`/library/${selectedCategory.id}`} state={{ fromGame }} className="text-orange-400 hover:text-orange-300 transition-colors" replace={true}>
                                 {selectedCategory.title}
                             </Link>
                         )}

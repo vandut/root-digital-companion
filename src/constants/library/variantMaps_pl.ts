@@ -3,13 +3,13 @@ import { LibraryCategory, MapId } from '../types';
 
 export const variantMaps_pl: LibraryCategory = {
     id: 'variant-maps',
-    title: 'Warianty Map',
+    title: 'Warianty map',
     description: 'Zasady dla map Zimowej, Jeziora i Górskiej.',
     type: 'rules',
     topics: [
         {
             id: 'map-variants',
-            title: 'Warianty Map',
+            title: 'Warianty map',
             content: [
                 {
                     subtitle: 'Mapa Zimowa',
@@ -19,7 +19,7 @@ export const variantMaps_pl: LibraryCategory = {
                 {
                     text: 'Ten proces losuje układ planszy w każdej grze, wymagając od graczy adaptacji strategii na bieżąco.',
                     collapsible: {
-                        summary: 'Pokaż Przygotowanie Mapy Zimowej',
+                        summary: 'Pokaż przygotowanie Mapy Zimowej',
                         details: [
                             "Kluczową cechą Mapy Zimowej są losowe kolory polan, które są ustalane podczas przygotowania. Nie używasz nadrukowanych kolorów na planszy.",
                             "Aby przygotować kolory:",
@@ -39,7 +39,7 @@ export const variantMaps_pl: LibraryCategory = {
                 {
                     text: "Prom pozwala na potężny ruch. Raz na turę gracz z elementami na polanie Promu może je przenieść na dowolną inną polanę przybrzeżną. Ten ruch ignoruje normalne sąsiedztwo, a pionek Promu przemieszcza się wraz z elementami. Po użyciu Promu gracz dobiera jedną kartę. Promu nie można atakować ani usunąć.",
                     collapsible: {
-                        summary: 'Pokaż Przygotowanie Mapy Jeziora',
+                        summary: 'Pokaż przygotowanie Mapy Jeziora',
                         details: [
                             "Modyfikacje przygotowania: Umieść pionek Promu na polanie w narożniku, która jest jednocześnie polaną przybrzeżną."
                         ]
@@ -58,7 +58,7 @@ export const variantMaps_pl: LibraryCategory = {
                 {
                     text: "Centralna polana z pionkiem Wieży nazywana jest Przełęczą. Na koniec Wieczoru gracza, jeśli kontroluje on Przełęcz, zdobywa jeden punkt zwycięstwa.",
                     collapsible: {
-                        summary: 'Pokaż Przygotowanie Mapy Górskiej',
+                        summary: 'Pokaż przygotowanie Mapy Górskiej',
                         details: [
                             "Modyfikacje przygotowania: Umieść 6 znaczników Zamkniętych Ścieżek na 6 ścieżkach o ciemniejszym kolorze. Umieść pionek Wieży na centralnej polanie z nadrukowanymi dwiema wieżami."
                         ]

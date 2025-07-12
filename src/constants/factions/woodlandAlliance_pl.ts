@@ -12,7 +12,7 @@ export const woodlandAlliance_pl: Faction = {
   howToPlay: 'Sojusz Leśnych Stworzeń działa w cieniu, budując oddolną rebelię. Zaczynasz bez żadnych elementów na mapie, skupiając się najpierw na gromadzeniu kart w swoim stosie Stronników. Następnie zaczynasz Rozprzestrzeniać Sympatyków, co daje punkty i przygotowuje grunt pod przyszłe akcje. Twoim wielkim ruchem jest Rewolta, która usuwa wszystkie wrogie elementy z polany i ustanawia stałą Bazę. Bazy pozwalają szkolić Oficerów, co z kolei umożliwia podejmowanie akcji militarnych, takich jak Ruch i Walka, wieczorem. Jesteś siłą partyzancką, silną w obronie i zdolną do nagłych, gwałtownych powstań.',
   strategy: 'Twoja wczesna faza gry polega na zdobywaniu stronników i rozprzestrzenianiu sympatyków na niepopularne polany (te z dużą liczbą wrogich elementów), aby wywołać "Bunt" i zdobyć darmowych stronników od innych graczy. Unikaj bezpośredniego konfliktu, dopóki nie będziesz gotowy. Ostrożnie wybieraj miejsca na rewoltę; dobrze umieszczona baza w centralnej, łatwej do obrony polanie może zabezpieczyć region i dać ci nowy front do szkolenia i operacji wojskowych. Rozmiar twojej ręki to twoja siła życiowa — więcej kart oznacza więcej stronników, więc chroń polany, na których możesz zyskać przewagę w kartach.',
   specialAbilities: [
-      { title: 'Wojna Partyzancka', description: 'Jako obrońca w walce zadajesz trafienia równe wyższemu wynikowi, a atakujący zadaje trafienia równe niższemu. Odwraca to normalne role w walce.' },
+      { title: 'Wojna partyzancka', description: 'Jako obrońca w walce zadajesz trafienia równe wyższemu wynikowi, a atakujący zadaje trafienia równe niższemu. Odwraca to normalne role w walce.' },
       { title: 'Stronnicy', description: 'Utrzymujesz zakryty stos kart zwany Stronnikami. Są one wydawane na twoje akcje i nie liczą się do limitu ręki. Jeśli nie masz baz, twój stos stronników jest ograniczony do pięciu kart.' },
       { title: 'Bunt', description: 'Gdy inny gracz usunie jeden z twoich żetonów sympatyków lub przesunie wojowników na polanę z sympatykami, musi dać ci kartę z ręki pasującą do polany. Jeśli nie może, musi pokazać ci swoją rękę, a ty dobierasz kartę z talii. To kluczowe źródło stronników.' },
   ],
@@ -36,7 +36,7 @@ export const woodlandAlliance_pl: Faction = {
           ]
         },
         {
-          title: 'Zdobywanie Sympatyków',
+          title: 'Zdobywanie sympatyków',
           description: 'Wydaj stronników, aby umieścić żeton Sympatyków, zdobywając PZ.',
           order: OrderType.ORDERED,
           details: [
@@ -51,7 +51,7 @@ export const woodlandAlliance_pl: Faction = {
     [GamePhase.DAYLIGHT]: {
       actions: [
         {
-          title: 'Podejmij akcje Dnia',
+          title: 'Podejmij akcje dnia',
           description: 'Możesz podjąć dowolne z poniższych akcji w dowolnej kolejności i liczbie.',
           order: OrderType.ORDERED,
           details: [
@@ -90,7 +90,7 @@ export const woodlandAlliance_pl: Faction = {
     [GamePhase.EVENING]: {
       actions: [
         {
-          title: 'Operacje Militarne',
+          title: 'Operacje militarne',
           description: 'Podejmij akcje w liczbie równej liczbie twoich oficerów.',
           order: OrderType.ORDERED,
           details: [
@@ -125,7 +125,7 @@ export const woodlandAlliance_pl: Faction = {
           ]
         },
         {
-          title: 'Dobierz i Odrzuć Karty',
+          title: 'Dobierz i odrzuć karty',
           description: 'Dobierz jedną kartę plus bonusy, a następnie odrzuć do pięciu.',
           order: OrderType.ORDERED,
           details: [

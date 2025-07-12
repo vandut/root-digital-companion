@@ -6,14 +6,14 @@ export const marquiseDeCat_pl: Faction = {
   name: 'Markiza de Kot',
   reach: 10,
   type: FactionType.MILITANT,
-  tagline: 'Machina Wojenna. Zdominuj knieję, budując ogromną, połączoną gospodarkę.',
-  howToWin: 'Zdobywaj punkty zwycięstwa, budując Warsztaty, Tartaki i Koszary. Im więcej budynków jednego typu posiadasz, tym więcej punktów będzie wart kolejny.',
+  tagline: 'Machina wojenna. Zdominuj knieję, budując ogromną, połączoną gospodarkę.',
+  howToWin: 'Zdobywaj punkty zwycięstwa, budując warsztaty, tartaki i koszary. Im więcej budynków jednego typu posiadasz, tym więcej punktów będzie wart kolejny.',
   mechanics: 'Markiza to frakcja budująca silnik, skoncentrowana na infrastrukturze. Twoimi głównymi komponentami są Drewno i Budynki. Tartaki produkują żetony Drewna. Te żetony Drewna są następnie wydawane na wznoszenie innych budynków: Warsztatów do wytwarzania przedmiotów i Koszar do generowania wojowników. Koszt każdego typu budynku wzrasta, w miarę jak budujesz ich więcej, ale rosną także zdobywane przez ciebie punkty zwycięstwa. Kluczowym mechanizmem jest Linia Zaopatrzenia: aby budować, musisz być w stanie prześledzić ścieżkę z kontrolowanych przez siebie polan od miejsca budowy do polany z Drewnem. Twoja ekonomia akcji jest również kluczowa; masz trzy akcje na turę, ale możesz wydać karty Ptaków na dodatkowe akcje lub na użycie potężnej zdolności Nadprodukcji.',
   howToPlay: 'Markiza de Kot prowadzi prostą grę opartą na budowaniu silnika. Cała twoja strategia kręci się wokół drewna. Budujesz Tartaki, aby produkować drewno, a następnie wydajesz to drewno na inne budynki, aby zdobywać punkty i ulepszać swoje akcje. Twierdza to twoja forteca; możesz umieszczać w niej wojowników tylko za pomocą Szpitali Polowych, co czyni ją kluczowym bastionem obronnym. Twoja siła rośnie systematycznie w miarę budowania, co prowadzi do eksplozywnego potencjału punktowego w końcowej fazie gry, jeśli twój silnik ekonomiczny nie zostanie powstrzymany.',
   strategy: 'Twój ruch początkowy jest kluczowy. Wcześnie postaw Tartaki, aby rozpocząć produkcję drewna. Chroń te linie zaopatrzenia za wszelką cenę; wróg, który odetnie ci dostawy drewna, może sparaliżować twoją grę. Wykorzystaj swoją dużą liczbę wojowników, aby nękać inne frakcje i zabezpieczać polany pod budowę. Nie zaniedbuj wytwarzania przedmiotów — Markiza może wytwarzać potężne karty, które mogą odwrócić losy gry. Twoim największym wyzwaniem jest powolny start i ograniczona liczba żetonów drewna. Musisz przetrwać wczesną fazę gry, aby zbudować swoją niepowstrzymaną maszynę przemysłową.',
   specialAbilities: [
     { title: 'Twierdza', description: 'Możesz umieszczać elementy na polanie z żetonem twierdzy, a inni gracze nie mogą. Jeśli żeton twierdzy zostanie kiedykolwiek usunięty, nie można go ponownie umieścić. To czyni polanę stałą, bezpieczną strefą dla twoich Szpitali Polowych.' },
-    { title: 'Szpitale Polowe', description: 'Gdy dowolna liczba twoich wojowników zostanie usunięta z polany, możesz wydać kartę pasującą do koloru tej polany, aby umieścić tych wojowników w Twierdzy zamiast w twoich zasobach. Karty Ptaków są kartami uniwersalnymi. To twoje kluczowe narzędzie obronne.' },
+    { title: 'Szpitale polowe', description: 'Gdy dowolna liczba twoich wojowników zostanie usunięta z polany, możesz wydać kartę pasującą do koloru tej polany, aby umieścić tych wojowników w Twierdzy zamiast w twoich zasobach. Karty Ptaków są kartami uniwersalnymi. To twoje kluczowe narzędzie obronne.' },
   ],
   setup: [
     "Zbierz Wojowników i Drewno: Utwórz zapasy 25 wojowników i 8 żetonów drewna.",
@@ -25,7 +25,7 @@ export const marquiseDeCat_pl: Faction = {
     [GamePhase.BIRDSONG]: {
       actions: [
         { 
-          title: 'Umieść Drewno', 
+          title: 'Umieść drewno', 
           description: 'Umieść jeden żeton drewna na każdym ze swoich tartaków.',
           order: OrderType.ORDERED,
           details: [
@@ -38,7 +38,7 @@ export const marquiseDeCat_pl: Faction = {
     [GamePhase.DAYLIGHT]: {
       actions: [
         {
-          title: 'Podejmij akcje Dnia',
+          title: 'Podejmij akcje dnia',
           description: 'Podejmij do trzech akcji, plus jedna dodatkowa za każdą wydaną kartę ptaka.',
           order: OrderType.ORDERED,
           details: [
@@ -100,7 +100,7 @@ export const marquiseDeCat_pl: Faction = {
     [GamePhase.EVENING]: {
       actions: [
         { 
-          title: 'Dobierz Karty', 
+          title: 'Dobierz karty', 
           description: 'Dobierz jedną kartę, plus bonusy z twojej planszy.',
           order: OrderType.ORDERED,
           details: [
@@ -109,7 +109,7 @@ export const marquiseDeCat_pl: Faction = {
           ]
         },
         {
-          title: 'Odrzuć do Limitu Ręki',
+          title: 'Odrzuć do limitu ręki',
           description: 'Jeśli masz więcej niż pięć kart, odrzuć nadmiarowe.',
           order: OrderType.ORDERED,
           details: [

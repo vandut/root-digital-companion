@@ -6,14 +6,14 @@ export const eyrieDynasties_pl: Faction = {
   name: 'Dynastie Orlich Gniazd',
   reach: 7,
   type: FactionType.MILITANT,
-  tagline: 'Stare Królestwo. Odzyskaj kontrolę nad knieją, zarządzając swoim stale rosnącym Dekretem.',
+  tagline: 'Stare królestwo. Odzyskaj kontrolę nad knieją, zarządzając swoim stale rosnącym Dekretem.',
   howToWin: 'Zdobywaj punkty zwycięstwa każdego Wieczoru na podstawie liczby Gniazd na mapie. Im więcej masz Gniazd, tym więcej punktów zdobywasz.',
   mechanics: 'Dynastie Orlich Gniazd definiuje Dekret, obowiązkowy zestaw akcji, które musisz wykonać w każdej turze. Dekret jest podzielony na cztery kolumny: Werbunek, Ruch, Walka i Budowa. W każdej turze musisz dodać jedną lub dwie karty z ręki do Dekretu, programując swoje akcje na daną turę. Karty Ptaków są uniwersalne i mogą być dodawane do dowolnej kolumny, ale są też ryzykowne. W ciągu Dnia musisz wykonać każdą akcję z Dekretu, od lewej do prawej, na polanie pasującej do koloru karty. Na przykład karta Lisa w kolumnie Ruchu zmusza cię do wykonania ruchu z polany Lisów. Jeśli nie możesz w pełni wykonać którejkolwiek akcji, wpadasz w Zamieszki. Jest to katastrofalne wydarzenie, w którym tracisz punkty zwycięstwa (jeden za każdą kartę ptaka w Dekrecie), twój obecny przywódca zostaje obalony, a cały Dekret jest czyszczony, pozostawiając tylko początkowe karty Wezyrów. Należy wtedy wybrać nowego przywódcę, co ustala nowy początkowy Dekret i specjalną zdolność.',
   howToPlay: 'Dynastie Orlich Gniazd to frakcja o wysokim ryzyku i wysokiej nagrodzie. Twoim celem jest budowanie i ochrona Gniazd, ponieważ to one determinują twoje punkty zwycięstwa wieczorem. Oznacza to ostrożne rozszerzanie terytorium poprzez dodawanie kart do Dekretu, budując potężny silnik akcji. Masz stały pęd, ale ten pęd jest kruchy. Zbyt ambitny Dekret może łatwo doprowadzić do Zamieszek, co znacznie cię cofnie. Musisz grać jak skrupulatny planista, zawsze myśląc kilka kroków naprzód, aby upewnić się, że twoje akcje są możliwe do wykonania.',
   strategy: 'Sukces z Dynastiami Orlich Gniazd zależy od zarządzania Dekretem. Nie bądź chciwy; dodanie zbyt wielu kart lub niewłaściwych kolorów doprowadzi do Zamieszek. Karty Ptaków to miecz obosieczny: oferują elastyczność, ale zwiększają karę za porażkę. Czasami zaplanowane Zamieszki mogą być strategicznym sposobem na zresetowanie zawodzącego Dekretu i przejście na bardziej odpowiedniego przywódcę dla obecnej sytuacji na planszy. Twoja specjalna zdolność, "Władcy Lasu", jest niezwykle potężna do ustanawiania kontroli, więc wykorzystaj ją na swoją korzyść, aby budować Gniazda na spornych polanach.',
   specialAbilities: [
-      { title: 'Władcy Lasu', description: 'Kontrolujesz polanę w przypadku remisu w liczbie wojowników i budynków, o ile masz tam co najmniej jeden element.' },
-      { title: 'Niechęć do Handlu', description: 'Wytwarzając przedmioty, ignorujesz wskazane punkty zwycięstwa i zamiast tego zdobywasz tylko jeden. To sprawia, że wytwarzanie przedmiotów jest mniej priorytetowe dla punktowania.' },
+      { title: 'Władcy lasu', description: 'Kontrolujesz polanę w przypadku remisu w liczbie wojowników i budynków, o ile masz tam co najmniej jeden element.' },
+      { title: 'Niechęć do handlu', description: 'Wytwarzając przedmioty, ignorujesz wskazane punkty zwycięstwa i zamiast tego zdobywasz tylko jeden. To sprawia, że wytwarzanie przedmiotów jest mniej priorytetowe dla punktowania.' },
   ],
   setup: [
       "Zbierz Wojowników: Utwórz zapas 20 wojowników.",
@@ -25,7 +25,7 @@ export const eyrieDynasties_pl: Faction = {
     [GamePhase.BIRDSONG]: {
       actions: [
         { 
-          title: 'Rozkazy Awaryjne', 
+          title: 'Rozkazy awaryjne', 
           description: 'Jeśli nie masz kart na ręce, dobierz jedną kartę.',
           order: OrderType.ORDERED,
           details: [
@@ -33,7 +33,7 @@ export const eyrieDynasties_pl: Faction = {
           ]
         },
         {
-          title: 'Dodaj do Dekretu',
+          title: 'Dodaj do dekretu',
           description: 'MUSISZ dodać jedną lub dwie karty do dowolnej kolumny Dekretu.',
           order: OrderType.ORDERED,
           details: [
@@ -56,7 +56,7 @@ export const eyrieDynasties_pl: Faction = {
           ]
         },
         {
-          title: 'Rozpatrz Dekret',
+          title: 'Rozpatrz dekret',
           description: 'MUSISZ rozpatrzyć wszystkie karty w Dekrecie, od lewej do prawej.',
           order: OrderType.ORDERED,
           details: [
@@ -78,7 +78,7 @@ export const eyrieDynasties_pl: Faction = {
           ]
         },
         {
-          title: 'Dobierz i Odrzuć Karty',
+          title: 'Dobierz i odrzuć karty',
           description: 'Dobierz jedną kartę plus bonusy, a następnie w razie potrzeby odrzuć do pięciu.',
           order: OrderType.ORDERED,
           details: [

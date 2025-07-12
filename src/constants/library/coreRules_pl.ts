@@ -3,35 +3,35 @@ import { LibraryCategory } from '../types';
 
 export const coreRules_pl: LibraryCategory = {
     id: 'core-rules',
-    title: 'Zasady Podstawowe',
+    title: 'Zasady podstawowe',
     description: 'Fundamentalne pojęcia i akcje rządzące wszystkimi graczami.',
     type: 'rules',
     topics: [
         {
             id: 'basics',
-            title: 'Podstawy Wojny w Kniei',
+            title: 'Podstawy wojny w Kniei',
             content: [
                 {
                     subtitle: 'Witajcie w Kniei',
                     text: 'Root to gra przygodowa i wojenna, w której gracze walczą o kontrolę nad rozległą dziczą. To, co wyróżnia Root, to asymetria: każdy gracz kontroluje unikalną frakcję z własnymi, odrębnymi zdolnościami, celami i stylem gry. Potężna Markiza de Kot chce uprzemysłowić las, arystokratyczne Dynastie Orlich Gniazd dążą do odzyskania utraconego królestwa, a buntowniczy Sojusz Leśnych Stworzeń ma na celu zjednoczenie stworzeń przeciwko najeźdźcom. Zrozumienie mocnych stron swojej frakcji i słabości przeciwników jest kluczem do zwycięstwa.'
                 },
                 {
-                    subtitle: 'Twój Cel',
+                    subtitle: 'Twój cel',
                     text: 'Głównym sposobem na wygraną jest zdobycie jako pierwszy 30 Punktów Zwycięstwa (PZ). Frakcje zdobywają punkty dzięki swoim unikalnym mechanizmom, takim jak budowanie struktur czy rozszerzanie wpływów. Można również zdobywać punkty, usuwając budynki i żetony wrogów lub wytwarzając przedmioty ze wspólnej talii.'
                 },
                  {
                     text: 'Alternatywnie, gracz może dążyć do zwycięstwa przez Dominację. Zagrywając specjalną kartę Dominacji, zmienia swój warunek zwycięstwa na kontrolowanie określonych polan na mapie na początku swojej tury. To strategia wysokiego ryzyka i wysokiej nagrody.',
                 },
                 {
-                    subtitle: 'Pole Bitwy',
+                    subtitle: 'Pole bitwy',
                     text: 'Gra toczy się na mapie kniei, która jest podzielona na POLANY połączone ŚCIEŻKAMI. Każda polana ma swój KOLOR (mysz, królik lub lis) i ograniczoną liczbę miejsc na budynki. Obszary między polanami to LASY, które są ważne dla niektórych frakcji. Niektóre polany zaczynają grę z RUINAMI, które blokują miejsca na budynki, dopóki nie zostaną zbadane, a ich żetony przedmiotów zabrane.'
                 },
                 {
-                    subtitle: 'Wspólna Talia',
+                    subtitle: 'Wspólna talia',
                     text: 'Wszyscy gracze dobierają karty z jednej, wspólnej talii. Te karty są niezbędne do wielu akcji. Większość kart ma KOLOR (mysz, lis lub królik), który odpowiada polanom na mapie. Karty PTAKÓW są uniwersalne i mogą być używane jako dowolny kolor. Wiele kart ma również EFEKT PRZEKUCIA, który można aktywować, używając elementów rzemieślniczych twojej frakcji (takich jak warsztaty czy gniazda) na polanach o pasujących kolorach. Wytwarzanie zapewnia potężne jednorazowe lub stałe zdolności i jest również źródłem PZ.'
                 },
                 {
-                    subtitle: 'Przebieg Gry',
+                    subtitle: 'Przebieg gry',
                     text: 'Tura każdego gracza jest podzielona na trzy fazy:',
                     list: [
                         'Świt: Faza „poranna”, w której wykonujesz specyficzne dla frakcji czynności przygotowawcze, takie jak dodawanie kart do Dekretu Orlich Gniazd czy umieszczanie drewna Markizy.',
@@ -43,7 +43,7 @@ export const coreRules_pl: LibraryCategory = {
         },
         {
             id: 'core-actions',
-            title: 'Kluczowe Akcje',
+            title: 'Kluczowe akcje',
             content: [
                  {
                     text: 'Chociaż każda frakcja ma unikalny sposób podejmowania akcji, większość dzieli kilka podstawowych akcji, które mogą wykonywać w swojej turze. Te akcje są fundamentalne dla interakcji z planszą i innymi graczami.'
@@ -56,7 +56,7 @@ export const coreRules_pl: LibraryCategory = {
                     subtitle: 'Walka',
                     text: 'Gdy toczysz WALKĘ, wybierz polanę, na której znajdują się twoi wojownicy. Jesteś ATAKUJĄCYM. Wybierz wroga na tej polanie jako OBROŃCĘ.',
                     collapsible: {
-                        summary: 'Pokaż 4 Kroki Walki',
+                        summary: 'Pokaż 4 kroki walki',
                         details: [
                             'Krok 1: Obrońca Może Przygotować Zasadzkę. Obrońca może zagrać kartę zasadzki pasującą do polany. Jeśli to zrobi, zadaje 2 trafienia natychmiast. Atakujący może anulować tę zasadzkę, zagrywając własną pasującą kartę zasadzki (obie karty są wtedy odrzucane bez efektu).',
                             'Krok 2: Rzut Kośćmi. Rzuć obiema kośćmi. Atakujący zadaje trafienia równe wyższemu wynikowi; obrońca zadaje trafienia równe niższemu wynikowi. Twoja maksymalna liczba trafień z rzutu jest ograniczona do liczby twoich wojowników na tej polanie. Obrońca jest Bezbronny, jeśli nie ma wojowników, co powoduje, że atakujący zadaje jedno dodatkowe trafienie.',
@@ -69,7 +69,7 @@ export const coreRules_pl: LibraryCategory = {
                     subtitle: 'Przekucie',
                     text: 'Możesz PRZEKUĆ większość kart z ręki, aby uzyskać natychmiastowy lub trwały efekt. Aby przekuć kartę, musisz AKTYWOWAĆ elementy do przekuwania (np. warsztaty Markizy, gniazda Orlich Gniazd) w kolorach wymienionych w lewym dolnym rogu karty. Każdy element do przekuwania może być aktywowany tylko raz na turę.',
                     collapsible: {
-                        summary: 'Pokaż Szczegóły Przekuwania',
+                        summary: 'Pokaż szczegóły przekuwania',
                         details: [
                             'Efekty Natychmiastowe (Ikona Papierowego Pola): Po przekuciu rozpatrz efekt karty, a następnie ją odrzuć. Jeśli karta przedstawia przedmiot, weź odpowiedni przedmiot z zasobów i umieść go w swoim polu Przekutych Przedmiotów (lub odpowiedniku frakcyjnym). Jeśli wymagany przedmiot nie jest dostępny w zasobach, NIE MOŻESZ przekuć tej karty.',
                             'Trwałe Efekty (Ikona Kamiennego Pola): Po przekuciu umieść kartę w swoim obszarze rozgrywki. Jej efekt jest teraz stały. NIE MOŻESZ przekuć trwałego efektu, jeśli masz już identyczny w swoim obszarze rozgrywki.'
@@ -80,14 +80,14 @@ export const coreRules_pl: LibraryCategory = {
         },
         {
             id: 'core-concepts',
-            title: 'Kluczowe Pojęcia',
+            title: 'Kluczowe pojęcia',
             content: [
                 {
                     subtitle: 'Kontrola',
                     text: 'Gracz KONTROLUJE polanę, jeśli ma na niej więcej wojowników i budynków łącznie niż każdy inny gracz. Żetony i pionki (jak Włóczęga) nie wliczają się do kontroli. W przypadku remisu nikt nie kontroluje polany.'
                 },
                 {
-                    subtitle: 'Polany, Ścieżki i Lasy',
+                    subtitle: 'Polany, ścieżki i lasy',
                     text: 'Mapa składa się z wielu POLAN połączonych ŚCIEŻKAMI. Polana jest sąsiadująca ze wszystkimi innymi polanami połączonymi z nią ścieżką. Każda polana ma KOLOR (mysz, królik lub lis) i ograniczoną liczbę MIEJSC NA BUDYNKI (białe kwadraty). Nie możesz umieścić budynku na polanie bez wolnych miejsc. Obszary na mapie otoczone ścieżkami i polanami nazywane są LASAMI.'
                 },
                 {
@@ -95,10 +95,10 @@ export const coreRules_pl: LibraryCategory = {
                     text: 'Miejsca oznaczone małą literą „R” rozpoczynają grę wypełnione RUINAMI. Ruin nie można usunąć, chyba że jest to wyraźnie określone (np. przez akcję Eksploracji Włóczęgi). Blokują one miejsca na budynki do czasu ich usunięcia.'
                 },
                 {
-                    subtitle: 'Karty: Ptaki jako Jokery',
+                    subtitle: 'Karty: Ptaki jako jokery',
                     text: 'Możesz traktować każdą kartę ptaka jako kartę innego koloru (mysz, lis lub królik).',
                     collapsible: {
-                        summary: 'Pokaż Niuanse Kart Ptaków',
+                        summary: 'Pokaż niuanse kart ptaków',
                         details: [
                             'Wymuszone Efekty: Jeśli jesteś zmuszony do odrzucenia lub oddania kart o konkretnym kolorze, MUSISZ traktować swoje karty ptaków jako karty wymaganego koloru. Nie możesz ich zatrzymać.',
                             'Odwrotna Zastępowalność: Jeśli jesteś zmuszony do zagrania, odrzucenia, dobrania lub oddania karty ptaka, NIE MOŻESZ jej zastąpić kartą innego koloru.'
@@ -106,7 +106,7 @@ export const coreRules_pl: LibraryCategory = {
                     }
                 },
                 {
-                    subtitle: 'Karty Zasadzki',
+                    subtitle: 'Karty zasadzki',
                     text: 'W talii znajduje się pięć KART ZASADZEK (po jednej mysiej, lisiej, króliczej i dwie ptasie). Możesz zagrać kartę Zasadzki dla jej koloru, ale nie możesz jej przekuć. Jej głównym celem jest zagranie jej w walce, aby zadać dwa natychmiastowe obrażenia atakującemu.'
                 },
             ]
@@ -116,14 +116,14 @@ export const coreRules_pl: LibraryCategory = {
             title: 'Zwycięstwo',
             content: [
                 {
-                    subtitle: 'Zdobywanie Punktów Zwycięstwa',
+                    subtitle: 'Zdobywanie punktów zwycięstwa',
                     text: 'Pierwszy gracz, który zdobędzie 30 punktów zwycięstwa, natychmiast wygrywa grę. Jeśli kilku graczy zdobędzie 30 lub więcej punktów jednocześnie, wygrywa gracz aktualnie rozgrywający swoją turę. Każda frakcja ma unikalny sposób zdobywania punktów, ale każda może również zdobywać punkty, usuwając budynek lub żeton przeciwnika (1 PZ za każdy) lub wytwarzając przedmiot (PZ podane na karcie).'
                 },
                 {
-                    subtitle: 'Zwycięstwo przez Dominację',
+                    subtitle: 'Zwycięstwo przez dominację',
                     text: 'W talii znajdują się cztery karty Dominacji, które pozwalają wygrać grę bez zdobywania 30 punktów zwycięstwa. Zapewniają alternatywną drogę do zwycięstwa dla graczy, którzy potrafią ustanowić kontrolę terytorialną.',
                     collapsible: {
-                        summary: 'Pokaż, jak używać kart Dominacji',
+                        summary: 'Pokaż, jak używać kart dominacji',
                         details: [
                             'Aktywacja: Podczas swojego Dnia, jeśli masz co najmniej 10 punktów zwycięstwa, możesz zagrać kartę Dominacji, aby zmienić swój warunek zwycięstwa. Musisz usunąć swój znacznik punktacji z toru punktacji i od tej pory nie możesz zdobywać punktów zwycięstwa w tradycyjny sposób.',
                             'Warunek Zwycięstwa (Kolory): Dla dominacji Myszy, Królika lub Lisa, wygrywasz natychmiast na początku swojego Świtu, jeśli kontrolujesz trzy polany o pasującym kolorze.',

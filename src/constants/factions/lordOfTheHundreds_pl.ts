@@ -13,7 +13,7 @@ export const lordOfTheHundreds_pl: Faction = {
   strategy: 'Agresja to twoja jedyna droga. Twoja wczesna gra powinna skupiać się na grabieży przedmiotów z ruin lub od innych graczy, aby wzmocnić swój Skarbiec. Ostrożnie wybieraj swój Nastrój, aby kontrować przeciwników lub wzmacniać swoją przewagę. Akcja Podburzania jest potężna do osłabiania dobrze bronionych polan przed głównym atakiem. Twoim celem jest stworzenie dużego, spójnego terytorium wolnego od wrogów. Jesteś głównym celem, więc bądź przygotowany do obrony swojego Lorda i swoich Warowni, które są głównym źródłem rekrutacji.',
   specialAbilities: [
     { title: 'Lord', description: 'Twój pionek Lorda to specjalny wojownik, którego nie można usunąć poza walką. Wiele z twoich akcji koncentruje się na lokalizacji Lorda.' },
-    { title: 'Pogarda dla Handlu', description: 'Gdy wytwarzasz przedmiot, możesz go wziąć LUB na stałe odrzucić, aby zdobyć jego wartość w punktach zwycięstwa.' },
+    { title: 'Pogarda dla handlu', description: 'Gdy wytwarzasz przedmiot, możesz go wziąć LUB na stałe odrzucić, aby zdobyć jego wartość w punktach zwycięstwa.' },
     { title: 'Skarbiec', description: 'Zdobyte przedmioty umieszczasz w swoim Skarbcu. Liczba przedmiotów określa twoje Dowództwo (liczbę podstawowych akcji) i Waleczność (liczbę akcji Natarcia Lordem).' },
     { title: 'Szabrownicy', description: 'Atakując, możesz zadeklarować Szabrowanie. Jeśli to zrobisz, nie zadajesz trafień z rzutu, ale jeśli po walce kontrolujesz polanę, kradniesz jeden przedmiot z pola Wytworzonych Przedmiotów obrońcy.' },
   ],
@@ -45,7 +45,7 @@ export const lordOfTheHundreds_pl: Faction = {
           details: ['Jeśli twój Lord został usunięty w poprzedniej turze, musisz wybrać jednego ze swoich wojowników na mapie, aby awansował na nowego Lorda.']
         },
         {
-          title: 'Wybór Nastroju',
+          title: 'Wybór nastroju',
           description: 'Zmień nastrój swojego Lorda, zyskując nową zdolność na tę turę.',
           order: OrderType.ORDERED,
           details: ['Musisz wybrać nową kartę nastroju z dostępnych opcji. Nie możesz wybrać nastroju, który pokazuje typ przedmiotu, który aktualnie posiadasz w Skarbcu. Nastrój daje potężną zdolność pasywną na tę turę (np. Ambitny, Radosny, Rozgoryczony).']
@@ -61,7 +61,7 @@ export const lordOfTheHundreds_pl: Faction = {
           details: ['Możesz użyć swoich Warowni jako punktów rzemiosła. Kolor warowni to kolor polany, na której się znajduje.']
         },
         {
-          title: 'Rozkazuj Szczurom',
+          title: 'Rozkazuj szczurom',
           description: 'Podejmij akcje do wartości swojego Dowództwa.',
           order: OrderType.ORDERED,
           details: ['Twoja wartość Dowództwa (1-4, na podstawie przedmiotów w Skarbcu) to liczba akcji, które możesz podjąć z poniższej listy. Możesz je wykonywać w dowolnej kolejności i powtarzać.']
@@ -110,7 +110,7 @@ export const lordOfTheHundreds_pl: Faction = {
           details: ['To twój główny silnik punktowy. Policz liczbę polan, które kontrolujesz, na których znajduje się co najmniej jeden twój element i zero elementów wroga. Zdobądź PZ zgodnie z torem Nękania na swojej planszy. Im więcej kontrolujesz, tym więcej zdobywasz.']
         },
         {
-          title: 'Dobierz i Odrzuć Karty',
+          title: 'Dobierz i odrzuć karty',
           description: 'Dobierz jedną kartę, a następnie odrzuć do pięciu.',
           order: OrderType.ORDERED,
           details: ['Dobierz jedną kartę z talii. Jeśli masz więcej niż pięć kart na ręce, odrzuć nadmiarowe.']

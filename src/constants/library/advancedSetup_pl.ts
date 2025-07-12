@@ -9,10 +9,10 @@ export const setup_pl: LibraryCategory = {
     topics: [
         {
             id: 'standard-setup',
-            title: 'Przygotowanie Standardowe',
+            title: 'Przygotowanie standardowe',
             content: [
                 {
-                    subtitle: '1. Wybierz Frakcje',
+                    subtitle: '1. Wybierz frakcje',
                     text: 'Każdy gracz wybiera frakcję. Dla zbalansowanej gry, suma wartości Zasięgu wybranych frakcji (znajdująca się na ich planszach) powinna osiągnąć lub przekroczyć zalecenie dla liczby graczy:',
                     list: [
                         '2 Graczy: 17+ Zasięgu',
@@ -23,55 +23,55 @@ export const setup_pl: LibraryCategory = {
                     ]
                 },
                 {
-                    subtitle: '2. Wykonaj Przygotowanie Specyficzne dla Frakcji',
+                    subtitle: '2. Wykonaj przygotowanie specyficzne dla frakcji',
                     text: 'W kolejności tur (ustalonej przez grupę lub według najwyższej wartości kolejności przygotowania frakcji), każdy gracz postępuje zgodnie z instrukcjami przygotowania na swojej planszy frakcji. To poprowadzi cię przez umieszczanie początkowych wojowników, budynków i żetonów.'
                 },
                 {
-                    subtitle: '3. Umieść Ruiny i Przedmioty',
+                    subtitle: '3. Umieść ruiny i przedmioty',
                     text: 'Umieść jeden żeton ruin na każdej polanie z wydrukowanym symbolem „R”. Jeśli używasz odpowiedniego rozszerzenia, umieść żetony przedmiotów pod ruinami.'
                 },
                 {
-                    subtitle: '4. Rozdaj Ręce Startowe',
+                    subtitle: '4. Rozdaj ręce startowe',
                     text: 'Każdy gracz dobiera trzy karty ze wspólnej talii, aby utworzyć swoją rękę startową.'
                 },
                 {
-                    subtitle: '5. Ustal Pierwszego Gracza',
+                    subtitle: '5. Ustal pierwszego gracza',
                     text: 'Gracz, który jako pierwszy umieścił swoje elementy (lub gracz z najwyższą wartością kolejności przygotowania), wykonuje pierwszą turę.'
                 }
             ]
         },
         {
             id: 'advanced-setup-procedure',
-            title: 'Przygotowanie Zaawansowane',
+            title: 'Przygotowanie zaawansowane',
             content: [
                 { 
                     text: 'Dla doświadczonych graczy szukających większej różnorodności, ta metoda zastępuje standardowy wybór frakcji. Wprowadza draft frakcji i opcjonalne moduły, aby zapewnić zbalansowane i interesujące gry. Kroki są następujące:'
                 },
                 {
-                    subtitle: '1. Wybierz i Przygotuj Mapę',
+                    subtitle: '1. Wybierz i przygotuj mapę',
                     text: 'Gracze wspólnie wybierają mapę do gry (np. Jesienną, Zimową, Jeziora, Górską). Jeśli wybrana zostanie mapa wariantowa, należy najpierw zastosować jej specyficzne modyfikacje przygotowania.'
                 },
                 {
-                    subtitle: '2. Wybierz Talię',
+                    subtitle: '2. Wybierz talię',
                     text: 'Gracze jako grupa decydują, czy w grze używać talii standardowej, czy talii Banitów i Partyzantów.'
                 },
                 {
-                    subtitle: '3. Przygotuj Moduły Opcjonalne',
+                    subtitle: '3. Przygotuj moduły opcjonalne',
                     text: 'Gracze mogą zgodzić się na dodanie do gry Punktów Terenu i/lub Zaciężnych. Jeśli tak, należy teraz postępować zgodnie z ich specyficznymi zasadami przygotowania. Te moduły dodają znaczną różnorodność i nowe zasady do gry.'
                 },
                 {
-                    subtitle: '4. Usadź Graczy',
+                    subtitle: '4. Usadź graczy',
                     text: 'Ustal kolejność siedzenia i który gracz rozpocznie grę. Zazwyczaj robi się to losowo.'
                 },
                 {
-                    subtitle: '5. Dobierz Karty Początkowe',
+                    subtitle: '5. Dobierz karty początkowe',
                     text: 'Każdy gracz dobiera rękę pięciu kart. Nie zatrzymają wszystkich; ostateczną rękę startową wybiorą po przygotowaniu frakcji.'
                 },
                 {
-                    subtitle: '6. Draft Frakcji',
+                    subtitle: '6. Draft frakcji',
                     text: 'Ta metoda używa kart przygotowania frakcji, aby stworzyć zbalansowaną pulę do draftu. Zaczynając od ostatniego gracza w kolejności tur i idąc przeciwnie do ruchu wskazówek zegara, każdy gracz wybiera frakcję z puli i natychmiast ją przygotowuje, zanim następny gracz dokona wyboru.',
                     collapsible: {
-                        summary: 'Pokaż Kroki Draftu Frakcji',
+                        summary: 'Pokaż kroki draftu frakcji',
                         details: [
                             'Draft przebiega według następujących kroków:',
                             '1. Rozdaj Karty Przygotowania: Podziel karty frakcji na „Militarne” (czerwona nazwa, ikona miecza) i „Powstańcze” (szara nazwa, brak ikony miecza). Potasuj karty Militarne i rozdaj jedną na środek stołu. Potasuj pozostałe Militarne ze wszystkimi Powstańczymi. Następnie rozdaj po jednej karcie na gracza, plus jedną dodatkową, do wspólnej puli draftu.',
@@ -84,7 +84,7 @@ export const setup_pl: LibraryCategory = {
                     }
                 },
                 {
-                    subtitle: '7. Wybierz Rękę Startową',
+                    subtitle: '7. Wybierz rękę startową',
                     text: 'Po przygotowaniu wszystkich frakcji, każdy gracz patrzy na pięć dobranych wcześniej kart i wybiera trzy, które zatrzyma. Pozostałe dwie karty są wtasowywane z powrotem do talii.'
                 }
             ]

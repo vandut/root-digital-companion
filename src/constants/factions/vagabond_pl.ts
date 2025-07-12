@@ -6,13 +6,13 @@ export const vagabond_pl: Faction = {
   name: 'Włóczęga',
   reach: 5,
   type: FactionType.INSURGENT,
-  tagline: 'Samotny Wędrowiec. Wytycz własną ścieżkę, wykonując misje, pomagając lub szkodząc innym frakcjom i eksplorując ruiny.',
+  tagline: 'Samotny wędrowiec. Wytycz własną ścieżkę, wykonując misje, pomagając lub szkodząc innym frakcjom i eksplorując ruiny.',
   howToWin: 'Zdobywaj punkty zwycięstwa, poprawiając Relacje z innymi frakcjami, wykonując Misje, pomagając sojuszniczym frakcjom i usuwając wojowników wrogich frakcji (Niesława). Możesz także utworzyć Koalicję z innym graczem i dzielić z nim zwycięstwo.',
   mechanics: 'Włóczęga to pojedynczy pionek, którego akcje są determinowane przez ekwipunek Przedmiotów. Buty pozwalają ci się poruszać, Miecze walczyć, Pochodnie eksplorować ruiny w poszukiwaniu kolejnych przedmiotów, i tak dalej. Aby użyć przedmiotu, musisz go wyczerpać (odwrócić rewersem do góry). Na początku swojej tury odświeżasz podstawową liczbę przedmiotów, plus dodatkowe za każdą posiadaną pochodnię. Jeśli odniesiesz obrażenia w walce, musisz uszkodzić przedmioty, których nie można używać, dopóki nie zostaną naprawione w lesie lub za pomocą młotka. Kluczowym mechanizmem jest tor Relacji. Pomagając innej frakcji (dając im kartę pasującą do twojej polany), poprawiasz swoje relacje, zdobywasz punkty i zabierasz jeden z ich wytworzonych przedmiotów. Sojusznicza relacja pozwala ci poruszać się i walczyć razem z wojownikami tej frakcji. Z kolei atakowanie frakcji czyni ją Wrogiem, co pozwala ci zdobywać punkty za usuwanie jej elementów, ale utrudnia poruszanie się po jej terytorium.',
   howToPlay: 'Włóczęga to pojedynczy pionek grający w grę RPG pośrodku gry wojennej. Nie masz wojowników i nie możesz kontrolować polan. Cała twoja tura jest dyktowana przez twój ekwipunek Przedmiotów. Jesteś oportunistycznym agentem chaosu lub porządku, w zależności od twojego stylu gry. Możesz być pomocnym handlarzem, groźnym wojownikiem, oddanym poszukiwaczem przygód lub mieszanką wszystkich trzech. Twoja droga do zwycięstwa jest elastyczna, polegająca na zdolności do adaptacji do zmieniającego się stanu kniei i twoich relacji z jej mieszkańcami.',
   strategy: 'Wybór postaci na początku gry mocno wpłynie na twoją strategię. Twoja wczesna gra powinna skupić się na eksploracji ruin, aby zbudować kolekcję przedmiotów. Nie bój się odnosić niewielkich obrażeń; zakończenie tury w lesie pozwala na darmową naprawę wszystkich twoich przedmiotów. Pomoc jest twoim najbardziej niezawodnym źródłem punktów i przedmiotów. Celuj w gracza, który dużo wytwarza, aby zdobyć dobre przedmioty. Utworzenie Koalicji to potężny ruch w końcowej fazie gry; jeśli zostajesz w tyle, znajdź gracza na drugim miejscu, który ma trudności, i zaoferuj mu sojusz, aby zapewnić sobie wspólne zwycięstwo.',
   specialAbilities: [
-    { title: 'Samotny Wędrowiec', description: 'Twój pionek nie jest wojownikiem. Nie można go usunąć z mapy (zamiast tego odnosi obrażenia w postaci uszkodzonych przedmiotów) i nie może kontrolować polan.' },
+    { title: 'Samotny wędrowiec', description: 'Twój pionek nie jest wojownikiem. Nie można go usunąć z mapy (zamiast tego odnosi obrażenia w postaci uszkodzonych przedmiotów) i nie może kontrolować polan.' },
     { title: 'Zwinny', description: 'Możesz się poruszać niezależnie od tego, kto kontroluje polanę początkową lub docelową. Ignorujesz normalne zasady ruchu.' },
     { title: 'Przedmioty', description: 'Twoje zdolności zależą od zdobytych przedmiotów. Wyczerpujesz przedmioty (odwracasz je rewersem do góry), aby podjąć akcje. Uszkodzonych przedmiotów nie można używać, dopóki nie zostaną naprawione.' },
     { title: 'Relacje', description: 'Śledzisz swoje relacje z każdą frakcją. Mogą one być Wrogie, Obojętne, Przyjazne lub Sojusznicze. Pomoc poprawia relacje, a atakowanie je pogarsza. Relacje determinują punktowanie i specjalne akcje z daną frakcją.' },
@@ -49,7 +49,7 @@ export const vagabond_pl: Faction = {
     [GamePhase.DAYLIGHT]: {
       actions: [
         {
-          title: 'Podejmij akcje Dnia',
+          title: 'Podejmij akcje dnia',
           description: 'Wyczerpuj przedmioty, aby podejmować poniższe akcje w dowolnej kolejności i liczbie.',
           order: OrderType.ORDERED,
           details: [
@@ -123,7 +123,7 @@ export const vagabond_pl: Faction = {
           ]
         },
         {
-          title: 'Akcja Specjalna',
+          title: 'Akcja specjalna',
           description: 'Wyczerp przedmiot, aby użyć unikalnej zdolności swojej postaci.',
           order: OrderType.UNORDERED,
           details: [
@@ -135,7 +135,7 @@ export const vagabond_pl: Faction = {
     [GamePhase.EVENING]: {
       actions: [
         {
-          title: 'Wieczorny Odpoczynek',
+          title: 'Wieczorny odpoczynek',
           description: 'Jeśli jesteś w lesie, napraw wszystkie swoje uszkodzone przedmioty za darmo.',
           order: OrderType.ORDERED,
           details: [
@@ -144,7 +144,7 @@ export const vagabond_pl: Faction = {
           ]
         },
         {
-          title: 'Dobierz Karty',
+          title: 'Dobierz karty',
           description: 'Dobierz jedną kartę, plus jedną za każdą posiadaną monetę.',
           order: OrderType.ORDERED,
           details: [
@@ -152,7 +152,7 @@ export const vagabond_pl: Faction = {
           ]
         },
         {
-          title: 'Sprawdź Limit Przedmiotów i Odrzuć Karty',
+          title: 'Sprawdź limit przedmiotów i odrzuć karty',
           description: 'Odrzuć karty do limitu 5, a następnie odrzuć przedmioty, jeśli przekraczasz swój limit.',
           order: OrderType.ORDERED,
           details: [

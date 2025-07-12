@@ -6,16 +6,16 @@ export const corvidConspiracy_pl: Faction = {
   name: 'Krucza Konspiracja',
   reach: 3,
   type: FactionType.INSURGENT,
-  tagline: 'Tajemniczy Intryganci. Manipuluj knieją z cienia, zastawiając i odkrywając swoje zbrodnicze intrygi.',
+  tagline: 'Tajemniczy intryganci. Manipuluj knieją z cienia, zastawiając i odkrywając swoje zbrodnicze intrygi.',
   howToWin: 'Zdobywaj punkty zwycięstwa, odwracając swoje żetony intryg. Im więcej masz już odkrytych intryg, tym więcej punktów zdobywasz za odwrócenie kolejnej.',
   mechanics: 'Kruki kręcą się wokół żetonów Intryg. Masz cztery typy: Bomby (niszczą wszystkie wrogie elementy), Wnyki (blokują ruch wroga), Haracz (kradną karty wrogom) i Najazdy (sprowadzają wojowników po usunięciu). Umieszczasz te intrygi zakryte na mapie za pomocą akcji Intrygi. Aby punktować, musisz Odwrócić intrygę na polanie, gdzie masz wojownika, zdobywając 1 PZ za każdą odkrytą intrygę na mapie (wliczając tę właśnie odwróconą). Wrogowie mogą rzucić wyzwanie twoim zakrytym intrygom akcją Zdemaskowania. Jeśli odgadną typ intrygi, pokazując pasującą kartę, usuwają intrygę i zdobywają 1 PZ. Jeśli się pomylą, kradniesz ich kartę. To tworzy grę blefu o wysoką stawkę. Twoja zdolność Ukryte Kruki czyni cię również trudnym obrońcą, zadając dodatkowe obrażenia w walce, jeśli masz zakrytą intrygę na polanie.',
   howToPlay: 'Krucza Konspiracja to frakcja szpiegów i sabotażystów, skupiona na blefowaniu i dezinformacji. Twoja podstawowa pętla rozgrywki polega na umieszczaniu zakrytych żetonów Intryg na mapie, a następnie ich odwracaniu z obecnością wojownika, aby zdobywać punkty i wywoływać efekt. Punktowanie jest wykładnicze; im więcej intryg jest już odkrytych, tym więcej punktów daje następna. To tworzy napiętą grę w kotka i myszkę, w której próbujesz przechytrzyć przeciwników i chronić swoje cenne intrygi, aż będziesz mógł je ujawnić za ogromną liczbę punktów.',
   strategy: 'Cała twoja gra to gry umysłowe. Umieszczaj intrygi w miejscach, które są najbardziej groźne dla twoich przeciwników. Intryga Bomby na ich najcenniejszej polanie zmusza ich do ryzykowania Zdemaskowania lub wycofania się. Wnyki mogą zablokować kluczową ścieżkę. Ponieważ zdobywasz punkty za *każdą* odkrytą intrygę, gdy odwracasz nową, twoje punktowanie może eksplodować w końcowej fazie gry. Użyj swojej zdolności Zwinny, aby przemieszczać wojowników na pozycje do odwracania intryg. Twoja zdolność "Ukryte Kruki" sprawia, że wrogowie dwa razy się zastanowią, zanim cię zaatakują, ponieważ otrzymają dodatkowe trafienie, jeśli masz zakrytą intrygę na polanie. Staraj się oszukać przeciwników, aby zdemaskowali niewłaściwą intrygę i ukraść im karty.',
   specialAbilities: [
     { title: 'Zwinny', description: 'Możesz się poruszać niezależnie od tego, kto kontroluje polanę początkową lub docelową.' },
-    { title: 'Ukryte Kruki', description: 'Jako obrońca w walce, jeśli masz zakryty żeton intrygi na polanie bitwy, zadajesz dodatkowe trafienie.' },
+    { title: 'Ukryte kruki', description: 'Jako obrońca w walce, jeśli masz zakryty żeton intrygi na polanie bitwy, zadajesz dodatkowe trafienie.' },
     { title: 'Zdemaskowanie', description: 'Wróg z elementami na polanie z twoją zakrytą intrygą może pokazać ci pasującą kartę, aby odgadnąć typ intrygi. Jeśli odgadnie, usuwa intrygę i zdobywa 1 PZ. Jeśli nie, zabierasz mu kartę.' },
-    { title: 'Żetony Intryg', description: 'Masz cztery typy intryg: Bomba (usuwa wszystkie wrogie elementy), Wnyki (uniemożliwia ruch wroga), Haracz (kradnie karty wrogom) i Najazd (po usunięciu umieszcza wojowników).' },
+    { title: 'Żetony intryg', description: 'Masz cztery typy intryg: Bomba (usuwa wszystkie wrogie elementy), Wnyki (uniemożliwia ruch wroga), Haracz (kradnie karty wrogom) i Najazd (po usunięciu umieszcza wojowników).' },
   ],
   setup: [
     "Zbierz Wojowników i Intrygi: Utwórz zapasy 15 wojowników i 8 zakrytych żetonów intryg (po 2 każdego rodzaju).",
@@ -25,7 +25,7 @@ export const corvidConspiracy_pl: Faction = {
     [GamePhase.BIRDSONG]: {
       actions: [
           {
-              title: 'Przeprowadź Poranne Spiski',
+              title: 'Przeprowadź poranne spiski',
               description: 'Możesz wykonywać te akcje w dowolnej kolejności i liczbie (z wyjątkiem Werbunku).',
               order: OrderType.ORDERED,
               details: [
@@ -39,7 +39,7 @@ export const corvidConspiracy_pl: Faction = {
               details: ["Możesz użyć swoich żetonów intryg na mapie (zarówno odkrytych, jak i zakrytych) jako elementów do wytwarzania. Każda intryga dostarcza kolor swojej polany i może być aktywowana raz na turę."]
           },
           {
-              title: 'Realizacja Intryg',
+              title: 'Realizacja intryg',
               description: 'Na polanie ze swoimi wojownikami odwróć intrygę odkrytą stroną do góry, aby zdobyć punkty i rozpatrzyć jej efekt.',
               order: OrderType.UNORDERED,
               details: ['Wybierz zakrytą intrygę na polanie, gdzie masz co najmniej jednego wojownika. Odwróć ją. Zdobądź 1 PZ za KAŻDĄ odkrytą intrygę na mapie (wliczając tę właśnie odwróconą). Następnie rozpatrz efekt odwrócenia intrygi, jeśli jest to Bomba lub Haracz.',
@@ -56,7 +56,7 @@ export const corvidConspiracy_pl: Faction = {
     [GamePhase.DAYLIGHT]: {
       actions: [
         {
-          title: 'Podejmij akcje Dnia',
+          title: 'Podejmij akcje dnia',
           description: 'Możesz podjąć do trzech akcji z poniższej listy.',
           order: OrderType.ORDERED,
           details: ['Masz budżet trzech akcji. Możesz wybierać spośród Ruchu, Intrygi, Walki lub Podmianki, w dowolnej kolejności, i możesz powtarzać tę samą akcję.']
@@ -96,8 +96,8 @@ export const corvidConspiracy_pl: Faction = {
           details: ['Elastyczna opcja. Jeśli brakuje ci jednej akcji do wykonania zwycięskiego ruchu, możesz poświęcić dobieranie kart, aby to zrobić.']
         },
         {
-          title: 'Dobierz Karty',
-          description: 'Dobierz jedną kartę, plus jedną za każdą odkrytą intrygę Haraczu.',
+          title: 'Dobierz karty',
+          description: 'Dobierz jedną kartę, plus jedną per face-up Extortion plot.',
           order: OrderType.ORDERED,
           details: ['Dobierz jedną kartę. Następnie dobierz dodatkową kartę za każdą odkrytą intrygę Haraczu na mapie. Na koniec odrzuć karty do limitu pięciu.']
         }

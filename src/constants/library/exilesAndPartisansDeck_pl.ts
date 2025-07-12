@@ -18,28 +18,28 @@ export const exilesAndPartisansDeck_pl: LibraryCategory = {
         },
         {
             id: 'key-differences',
-            title: 'Kluczowe Różnice w Porównaniu do Talii Standardowej',
+            title: 'Kluczowe różnice w porównaniu do Talii Standardowej',
             content: [
                 {
-                    subtitle: 'Brak Kart Dominacji',
+                    subtitle: 'Brak kart Dominacji',
                     text: 'Najważniejszą zmianą jest usunięcie wszystkich czterech kart Dominacji. Z tą talią zwycięstwo jest możliwe tylko przez osiągnięcie 30 punktów zwycięstwa. Zmusza to graczy do bezpośredniej konfrontacji w celu zdobywania punktów i uniemożliwia graczowi „chowanie się” w narożnych polanach, aby zapewnić sobie wygraną.'
                 },
                 {
-                    subtitle: 'Brak Kart Zasadzek',
+                    subtitle: 'Brak kart Zasadzek',
                     text: 'Pięć kart Zasadzek zostało usuniętych. To sprawia, że inicjowanie walki jest mniej ryzykowne dla atakującego, ponieważ nie musi się już obawiać otrzymania dwóch natychmiastowych, nieblokowalnych trafień przed rzutem kośćmi. Ta zmiana generalnie zachęca do częstszych walk.'
                 },
                  {
-                    subtitle: 'Nowy Rozkład Kart',
+                    subtitle: 'Nowy rozkład kart',
                     text: 'Liczba kart każdego koloru (Lis, Królik, Mysz, Ptak) jest nieco inna, a rozkład wytwarzanych przedmiotów został zmieniony, co zmienia krajobraz rzemieślniczy kniei.'
                 }
             ]
         },
         {
             id: 'new-card-effects',
-            title: 'Nowe Efekty Kart i Styl Gry',
+            title: 'Nowe efekty kart i styl gry',
             content: [
                 {
-                    subtitle: 'Bardziej Niestabilna Knieja',
+                    subtitle: 'Bardziej niestabilna Knieja',
                     text: 'Efekty kart w tej talii są zaprojektowane tak, aby były bardziej wpływowe i interaktywne, często bezpośrednio wpływając na innych graczy. Prowadzi to do bardziej chaotycznej i reaktywnej gry, w której pozycje na planszy mogą się gwałtownie zmieniać.'
                 },
                 {
@@ -52,7 +52,7 @@ export const exilesAndPartisansDeck_pl: LibraryCategory = {
                     ]
                 },
                  {
-                    subtitle: 'Nacisk na Interakcję Między Graczami',
+                    subtitle: 'Nacisk na interakcję między graczami',
                     text: 'Talia zachęca graczy do zwracania bacznej uwagi na działania innych. Karty takie jak "Wizyta u Przyjaciół" (zdobądź wojowników, płacąc innemu graczowi) czy "Zwiad" (zmuś graczy z dużą ręką do oddania ci kart) tworzą sieć tymczasowych sojuszy, negocjacji i zdrad. Gra staje się mniej o realizowaniu samotnej strategii, a bardziej o adaptacji do ciągle zmieniającego się krajobrazu politycznego.'
                 }
             ]

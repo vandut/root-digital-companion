@@ -23,9 +23,10 @@ export const TurnDashboard: React.FC = () => {
 
     const phaseContainerRef = useRef<HTMLDivElement>(null);
     const phaseTabRefs = useRef<Map<GamePhase, HTMLButtonElement | null>>(new Map());
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+    const [touchMove, setTouchMove] = useState<{ x: number; y: number } | null>(null);
+    const minSwipeDistance = 50;
 
     const openModal = (type: string, data?: any) => {
         window.history.pushState({ modal: true }, '');
@@ -63,34 +64,6 @@ export const TurnDashboard: React.FC = () => {
         };
     }, [modalStack]); 
 
-    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!phaseContainerRef.current) return;
-        setIsDragging(true);
-        setStartX(e.pageX - phaseContainerRef.current.offsetLeft);
-        setScrollLeft(phaseContainerRef.current.scrollLeft);
-        phaseContainerRef.current.style.cursor = 'grabbing';
-    };
-
-    const handleMouseLeave = () => {
-        if (!phaseContainerRef.current) return;
-        setIsDragging(false);
-        phaseContainerRef.current.style.cursor = 'grab';
-    };
-
-    const handleMouseUp = () => {
-        if (!phaseContainerRef.current) return;
-        setIsDragging(false);
-        phaseContainerRef.current.style.cursor = 'grab';
-    };
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!isDragging || !phaseContainerRef.current) return;
-        e.preventDefault();
-        const x = e.pageX - phaseContainerRef.current.offsetLeft;
-        const walk = (x - startX) * 2;
-        phaseContainerRef.current.scrollLeft = scrollLeft - walk;
-    };
-
     if (!gameState) {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
@@ -101,6 +74,48 @@ export const TurnDashboard: React.FC = () => {
     }
 
     const { players, currentPlayerIndex, currentPhase } = gameState;
+    const phaseOrder = Object.values(GamePhase);
+
+    const handleSwipeNext = () => {
+        const currentIndex = phaseOrder.indexOf(currentPhase);
+        if (currentIndex < phaseOrder.length - 1) {
+            setPhase(phaseOrder[currentIndex + 1]);
+        }
+    };
+    
+    const handleSwipePrev = () => {
+        const currentIndex = phaseOrder.indexOf(currentPhase);
+        if (currentIndex > 0) {
+            setPhase(phaseOrder[currentIndex - 1]);
+        }
+    };
+    
+    const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        setTouchMove(null);
+        setTouchStart({ x: e.targetTouches[0].clientX, y: e.targetTouches[0].clientY });
+    };
+
+    const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!touchStart) return;
+        setTouchMove({ x: e.targetTouches[0].clientX, y: e.targetTouches[0].clientY });
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchMove) return;
+        const distanceX = touchStart.x - touchMove.x;
+        const distanceY = touchStart.y - touchMove.y;
+        
+        if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > minSwipeDistance) {
+            if (distanceX > 0) {
+                handleSwipeNext();
+            } else {
+                handleSwipePrev();
+            }
+        }
+
+        setTouchStart(null);
+        setTouchMove(null);
+    };
 
     useEffect(() => {
         const activeTab = phaseTabRefs.current.get(currentPhase);
@@ -183,7 +198,11 @@ export const TurnDashboard: React.FC = () => {
             </header>
             
             <main className="flex-1 max-w-5xl mx-auto w-full overflow-hidden sm:p-6 lg:p-8 flex flex-col">
-                <LibraryContainer>
+                <LibraryContainer
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                >
                     
                     {/* Player Switcher */}
                     <div className="flex-shrink-0">
@@ -207,17 +226,13 @@ export const TurnDashboard: React.FC = () => {
                     {/* Phase Indicator */}
                     <div 
                         ref={phaseContainerRef}
-                        onMouseDown={handleMouseDown}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseUp={handleMouseUp}
-                        onMouseMove={handleMouseMove}
-                        className="flex-shrink-0 flex justify-start sm:justify-center border-b-2 border-stone-500 mb-6 overflow-x-auto hide-scrollbar cursor-grab select-none">
-                    {Object.values(GamePhase).map(phase => (
+                        className="flex-shrink-0 flex justify-center border-b-2 border-stone-500 mb-6 overflow-x-auto sm:overflow-visible hide-scrollbar">
+                    {phaseOrder.map(phase => (
                         <button 
                             key={phase} 
                             ref={el => { phaseTabRefs.current.set(phase, el); }}
                             onClick={() => setPhase(phase)} 
-                            className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-all duration-200 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900 font-bold' : 'border-b-4 border-transparent text-stone-600'}`}>
+                            className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-colors duration-200 rounded-t-lg font-bold ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900' : 'border-b-4 border-transparent text-stone-600 opacity-70'}`}>
                             {UI_TEXT.gamePhase[phase]}
                         </button>
                     ))}

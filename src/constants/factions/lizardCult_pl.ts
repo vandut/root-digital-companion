@@ -6,17 +6,17 @@ export const lizardCult_pl: Faction = {
   name: 'Jaszczurzy Kultyści',
   reach: 2,
   type: FactionType.MILITANT,
-  tagline: 'Fanatyczni Prozelici. Nawracaj wygnańców kniei i szerz swoją ewangelię poprzez przytłaczające przekonanie.',
+  tagline: 'Fanatyczni prozelici. Nawracaj wygnańców kniei i szerz swoją ewangelię poprzez przytłaczające przekonanie.',
   howToWin: 'Zdobywaj punkty zwycięstwa głównie poprzez wykonywanie rytuału Punktacji w fazie Dnia. Im więcej masz Ogrodów danego koloru, tym więcej punktów zdobywasz, wydając kartę tego koloru.',
   mechanics: 'Akcje Kultu są dyktowane przez stos kart odrzuconych, znany jako Zagubione Dusze. Najliczniejszy kolor w Zagubionych Duszach na początku twojej tury staje się kolorem Wygnańców. Ten kolor determinuje, gdzie możesz wykonywać potężne akcje Spisków, które są zasilane przez Akolitów. Zdobywasz Akolitów głównie dzięki swojej zdolności Zemsty, gdy twoi wojownicy są usuwani w obronie. Twoja faza Dnia polega na wykonywaniu Rytuałów poprzez odkrywanie kart z ręki. Za każdą odkrytą kartę otrzymujesz jedną akcję (Budowa, Werbunek lub Punktacja). Wydajesz kartę tylko wtedy, gdy wykonujesz rytuał Punktacji, co czyni zarządzanie ręką kluczowym. Twoje budynki, Ogrody, mają specjalną właściwość Pielgrzymów, która sprawia, że kontrolujesz każdą polanę, na której masz ogród, co jest ogromną przewagą w kontrolowaniu planszy.',
   howToPlay: 'Jaszczurzy Kultyści to frakcja, która kwitnie dzięki ostrożnemu planowaniu. Musisz uważnie obserwować, jakie karty odrzucasz, aby manipulować kolorem Wygnańców na swoją korzyść. Jesteś słaby w walce, więc wykorzystaj swoją zdolność "Zemsty" — tracenie obrońców daje ci akolitów do potężnych spisków. Twoja zdolność "Pielgrzymów" jest jedną z najsilniejszych w grze; jeden ogród pozwala ci kontrolować polanę. Użyj tego, aby blokować budowanie i ruch innych frakcji.',
   strategy: 'Twoim celem jest manipulowanie kolorem "Wygnańców", aby był to kolor, w którym ustanowiłeś swoją obecność i możesz budować ogrody, co pozwoli ci zdobywać duże punkty. We wczesnej fazie gry, starannie zarządzaj swoją ręką, aby odrzucać karty w kolorze, którego potrzebujesz, aby stał się kolorem Wygnańców. Twoim najpotężniejszym Spiskiem jest Uświęcenie, które pozwala zastąpić budynek wroga ogrodem, co jest ogromnym zwrotem w sytuacji na planszy i w punktacji. Twoje punktowanie jest powolne, ale może gwałtownie przyspieszyć, jeśli zbudujesz wiele ogrodów tego samego koloru i zdołasz uczynić ten kolor kolorem Wygnańców.',
   specialAbilities: [
-    { title: 'Nienawiść do Ptaków', description: 'Karty Ptaków nie są uniwersalne dla twoich Rytuałów. Kolor ptasi jest odrębnym kolorem, używanym do rytuału Ofiary.' },
+    { title: 'Nienawiść do ptaków', description: 'Karty Ptaków nie są uniwersalne dla twoich Rytuałów. Kolor ptasi jest odrębnym kolorem, używanym do rytuału Ofiary.' },
     { title: 'Zemsta', description: 'Gdy jeden z twoich wojowników zostanie usunięty podczas obrony w walce, jest umieszczany w polu Akolitów zamiast w twoich zasobach. To zasila twoje spiski.' },
     { title: 'Pielgrzymi', description: 'Kontrolujesz każdą polanę, na której masz ogród, niezależnie od liczby wojowników i budynków. Zastępuje to normalne zasady kontroli.' },
-    { title: 'Strach przed Wiernymi', description: 'Jeśli jeden z twoich ogrodów zostanie usunięty, musisz odrzucić losową kartę z ręki.' },
-    { title: 'Stos Zagubionych Dusz', description: 'Gdy wydasz lub odrzucisz kartę, trafia ona na stos Zagubionych Dusz zamiast na główny stos kart odrzuconych. Ten stos determinuje twój kolor Wygnańców.' },
+    { title: 'Strach przed wiernymi', description: 'Jeśli jeden z twoich ogrodów zostanie usunięty, musisz odrzucić losową kartę z ręki.' },
+    { title: 'Stos zagubionych dusz', description: 'Gdy wydasz lub odrzucisz kartę, trafia ona na stos Zagubionych Dusz zamiast na główny stos kart odrzuconych. Ten stos determinuje twój kolor Wygnańców.' },
   ],
   setup: [
     "Zbierz Wojowników: Utwórz zapas 25 wojowników.",
@@ -28,7 +28,7 @@ export const lizardCult_pl: Faction = {
     [GamePhase.BIRDSONG]: {
       actions: [
         {
-          title: 'Wyznacz Wygnańców',
+          title: 'Wyznacz wygnańców',
           description: 'Kolor z największą liczbą kart w stosie Zagubionych Dusz staje się nowym kolorem Wygnańców.',
           order: OrderType.ORDERED,
           details: [
@@ -37,13 +37,13 @@ export const lizardCult_pl: Faction = {
           ]
         },
         {
-          title: 'Odrzuć Zagubione Dusze',
+          title: 'Odrzuć zagubione dusze',
           description: 'Odrzuć wszystkie karty ze stosu Zagubionych Dusz na główny stos kart odrzuconych.',
           order: OrderType.ORDERED,
           details: ['To czyści stos na następną rundę. W tym momencie karty Dominacji stają się dostępne do wzięcia przez innych graczy.']
         },
         {
-          title: 'Przeprowadź Spiski',
+          title: 'Przeprowadź spiski',
           description: 'Wydaj akolitów, aby przeprowadzić akcje na polanach Wygnańców.',
           order: OrderType.ORDERED,
           details: [
@@ -58,7 +58,7 @@ export const lizardCult_pl: Faction = {
     [GamePhase.DAYLIGHT]: {
       actions: [
         {
-          title: 'Przeprowadź Rytuały',
+          title: 'Przeprowadź rytuały',
           description: 'Odkryj karty z ręki, aby podjąć jedną akcję za każdą odkrytą kartę.',
           order: OrderType.ORDERED,
           details: [
@@ -95,7 +95,7 @@ export const lizardCult_pl: Faction = {
     [GamePhase.EVENING]: {
       actions: [
         {
-          title: 'Zwróć Odkryte Karty',
+          title: 'Zwróć odkryte karty',
           description: 'Zwróć na rękę wszystkie karty, które odkryłeś, ale nie wydałeś.',
           order: OrderType.ORDERED,
           details: ['Weź z powrotem na rękę wszystkie karty, które odkryłeś do rytuałów, ale nie wydałeś na rytuał Punktacji. Karty użyte do Punktacji pozostają w stosie Zagubionych Dusz.']
@@ -107,7 +107,7 @@ export const lizardCult_pl: Faction = {
           details: ['Możesz wytwarzać karty z ręki, aktywując ogrody. Co ważne, możesz używać tylko ogrodów, które znajdują się na polanach pasujących do obecnego koloru Wygnańców.']
         },
         {
-          title: 'Dobierz i Odrzuć Karty',
+          title: 'Dobierz i odrzuć karty',
           description: 'Dobierz jedną kartę plus bonusy, a następnie w razie potrzeby odrzuć do pięciu.',
           order: OrderType.ORDERED,
           details: ['Dobierz jedną kartę, plus jedną za każdy odkryty bonus na twoim torze Ogrodów. Odrzuć karty do limitu pięciu.']

@@ -3,26 +3,26 @@ import { LibraryCategory } from '../types';
 
 export const landmarks_pl: LibraryCategory = {
     id: 'landmarks',
-    title: 'Punkty Terenu',
+    title: 'Punkty terenu',
     description: 'Unikalne punkty terenu, które zmieniają zasady na polanach, które zajmują.',
     type: 'rules',
     topics: [
         {
             id: 'landmarks-overview',
-            title: 'Używanie Punktów Terenu',
+            title: 'Używanie punktów terenu',
             content: [
                 {
                     text: 'Punkty Terenu to opcjonalny moduł, wybierany podczas Przygotowania Zaawansowanego, który dodaje do mapy unikalne lokacje. Każdy punkt terenu wprowadza specjalną zasadę dla swojej polany, tworząc nowe strategiczne możliwości i wyzwania.'
                 },
                 {
-                    subtitle: 'Zasady Ogólne',
+                    subtitle: 'Zasady ogólne',
                     text: 'Punkty Terenu nie należą do żadnej frakcji i nie są uważane za elementy wroga. Nie można ich atakować, przesuwać ani usuwać, chyba że specjalna zasada na karcie punktu terenu wyraźnie na to pozwala.'
                 },
                 {
-                    subtitle: 'Procedura Przygotowania',
+                    subtitle: 'Procedura przygotowania',
                     text: 'Punkty Terenu są dodawane do gry podczas procedury Przygotowania Zaawansowanego.',
                     collapsible: {
-                        summary: 'Pokaż Kroki Przygotowania Punktów Terenu',
+                        summary: 'Pokaż kroki przygotowania punktów terenu',
                         details: [
                             'Krok 1: Wybierz. Jako grupa zdecydujcie, czy gracie z jednym, czy dwoma punktami terenu. Usuńcie wszystkie karty punktów terenu, których nie chcecie używać.',
                             'Krok 2: Rozdaj i Zbierz. Potasujcie wybrane karty punktów terenu, rozdajcie wybraną ich liczbę i zbierzcie odpowiednie elementy wskazane na każdej z tych kart.',
@@ -35,7 +35,7 @@ export const landmarks_pl: LibraryCategory = {
         },
         {
             id: 'specific-landmarks',
-            title: 'Konkretne Punkty Terenu',
+            title: 'Konkretne punkty terenu',
             content: [
                 {
                     subtitle: 'Zaginione Miasto',
