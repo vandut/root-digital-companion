@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ICONS } from '../constants/icons';
+import { useTranslations } from '../hooks/useTranslations';
 
 export interface Option {
   value: string | number;
@@ -27,6 +28,7 @@ interface CustomSelectProps {
 }
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({ id, label, options, value, onChange, className = '' }) => {
+  const UI_TEXT = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   
@@ -92,7 +94,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({ id, label, options, 
         aria-expanded={isOpen}
         className="relative w-full text-left bg-amber-200/80 border-2 border-amber-800/50 rounded-lg shadow-inner py-2 px-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-700"
       >
-        <span className="block truncate text-stone-800">{selectedOption ? selectedOption.label : 'Select...'}</span>
+        <span className="block truncate text-stone-800">{selectedOption ? selectedOption.label : UI_TEXT.common.select}</span>
         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-stone-700">
            <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
              {ICONS.CHEVRON_DOWN}

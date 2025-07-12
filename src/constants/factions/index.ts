@@ -1,16 +1,16 @@
 
 import { Faction, FactionId } from '../types';
 
-import { marquiseDeCat } from './marquiseDeCat';
-import { eyrieDynasties } from './eyrieDynasties';
-import { woodlandAlliance } from './woodlandAlliance';
-import { vagabond } from './vagabond';
-import { lizardCult } from './lizardCult';
-import { riverfolkCompany } from './riverfolkCompany';
-import { undergroundDuchy } from './undergroundDuchy';
-import { corvidConspiracy } from './corvidConspiracy';
-import { lordOfTheHundreds } from './lordOfTheHundreds';
-import { keepersInIron } from './keepersInIron';
+import { marquiseDeCat } from './marquiseDeCat_en';
+import { eyrieDynasties } from './eyrieDynasties_en';
+import { woodlandAlliance } from './woodlandAlliance_en';
+import { vagabond } from './vagabond_en';
+import { lizardCult } from './lizardCult_en';
+import { riverfolkCompany } from './riverfolkCompany_en';
+import { undergroundDuchy } from './undergroundDuchy_en';
+import { corvidConspiracy } from './corvidConspiracy_en';
+import { lordOfTheHundreds } from './lordOfTheHundreds_en';
+import { keepersInIron } from './keepersInIron_en';
 
 export const FACTIONS: Record<FactionId, Faction> = {
   [FactionId.MARQUISE_DE_CAT]: marquiseDeCat,

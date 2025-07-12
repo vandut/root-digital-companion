@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const woodlandAlliance: Faction = {
   id: FactionId.WOODLAND_ALLIANCE,
   name: 'Woodland Alliance',
   reach: 3,
-  type: 'Insurgent',
+  type: FactionType.INSURGENT,
   tagline: 'Rebellion. Gain the sympathy of the oppressed creatures of the woodland and incite a revolt.',
   howToWin: 'Score victory points by spreading Sympathy across the map. The more Sympathy tokens on the map, the more points you score when you place the next one.',
   mechanics: 'The Alliance has several unique components. Supporters are a secret stack of cards you build by using the Mobilize action; these cards are the currency for your most powerful actions. Sympathy tokens are your primary way of scoring and establishing a board presence. You spend supporters to place them, with the cost increasing based on the number of enemy warriors in the target clearing. Bases are your strongholds, established by using the powerful Revolt action in a sympathetic clearing. Each of the three bases (Fox, Rabbit, Mouse) allows you to Train Officers. Officers are your military action points for the Evening. Finally, your Guerilla War ability reverses battle rolls when you are defending, making you a formidable opponent to attack.',
@@ -23,7 +23,7 @@ export const woodlandAlliance: Faction = {
       "Gain Supporters: Draw 3 cards from the deck and place them face down as your first supporters.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Revolt',
@@ -48,7 +48,7 @@ export const woodlandAlliance: Faction = {
         }
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Perform Daylight Actions',
@@ -87,7 +87,7 @@ export const woodlandAlliance: Faction = {
         }
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Military Operations',

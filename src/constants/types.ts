@@ -12,10 +12,22 @@ export enum FactionId {
   KEEPERS_IN_IRON = 'keepers-in-iron',
 }
 
+export enum MapId {
+  FALL = 'FALL',
+  WINTER = 'WINTER',
+  LAKE = 'LAKE',
+  MOUNTAIN = 'MOUNTAIN',
+}
+
+export enum FactionType {
+  MILITANT = 'MILITANT',
+  INSURGENT = 'INSURGENT',
+}
+
 export enum GamePhase {
-  BIRDSONG = 'Birdsong',
-  DAYLIGHT = 'Daylight',
-  EVENING = 'Evening',
+  BIRDSONG = 'BIRDSONG',
+  DAYLIGHT = 'DAYLIGHT',
+  EVENING = 'EVENING',
 }
 
 export enum OrderType {
@@ -42,7 +54,7 @@ export interface Faction {
   id: FactionId;
   name: string;
   reach: number;
-  type: 'Militant' | 'Insurgent';
+  type: FactionType;
   tagline: string;
   howToWin: string;
   mechanics: string;
@@ -61,6 +73,7 @@ export interface LibraryContentBlock {
         summary: string;
         details: string[];
     }
+    mapId?: MapId;
 }
 
 export interface LibraryTopic {

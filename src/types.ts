@@ -1,5 +1,5 @@
 
-import { FactionId, GamePhase } from './constants/types';
+import { FactionId, GamePhase, MapId } from './constants/types';
 
 export interface Player {
   id: string;
@@ -10,7 +10,7 @@ export interface Player {
 
 export interface GameState {
   players: Player[];
-  map: 'Fall' | 'Winter' | 'Lake' | 'Mountain';
+  map: MapId;
   useAdvancedSetup: boolean;
   useLandmarks: boolean;
   useHirelings: boolean;

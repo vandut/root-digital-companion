@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const undergroundDuchy: Faction = {
   id: FactionId.UNDERGROUND_DUCHY,
   name: 'Underground Duchy',
   reach: 8,
-  type: 'Militant',
+  type: FactionType.MILITANT,
   tagline: 'Subterranean Sovereigns. Expand your burrow and sway ministers to your cause to demonstrate your right to rule.',
   howToWin: 'Score victory points by swaying Ministers to your parliament and by using their powerful, unique actions to score points.',
   mechanics: 'The Duchy has several interconnected mechanics. The Burrow is a special off-map clearing that can only be attacked if the opponent controls all three of your Tunnel tokens on the map. You recruit warriors directly into the Burrow. The Parliament is your main engine, consisting of nine Minister cards. To gain a minister, you must Sway them by revealing cards from your hand that match the suits of clearings where you have pieces. Each minister provides a powerful, free action during your Parliament phase. However, this power comes with the Price of Failure: if an enemy removes one of your buildings (Citadels or Markets), you must discard your highest-ranking swayed minister and permanently remove its crown from the game. Finally, Tunnels, placed with the Dig action, allow you to deploy warriors from the Burrow to anywhere on the map, giving you incredible mobility.',
@@ -25,7 +25,7 @@ export const undergroundDuchy: Faction = {
     "Fill Crown Spaces: Place your 9 crowns (3 of each rank) on your faction board.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Reinforce the Burrow',
@@ -35,7 +35,7 @@ export const undergroundDuchy: Faction = {
         }
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Assembly',
@@ -93,7 +93,7 @@ export const undergroundDuchy: Faction = {
         },
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Discard and Return',

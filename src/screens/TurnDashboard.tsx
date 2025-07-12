@@ -8,15 +8,18 @@ import { FactionAction, GamePhase, OrderType } from '../constants/types';
 import { StyledButton } from '../components/StyledButton';
 import { Modal } from '../components/Modal';
 import { FactionDetail } from '../components/FactionDetail';
-import { FACTIONS } from '../constants/factions';
 import { ICONS } from '../constants/icons';
 import { IMAGES } from '../constants/images';
 import { LibraryContainer } from '../components/LibraryContainer';
+import { useTranslations } from '../hooks/useTranslations';
+import { useFactions } from '../hooks/useFactions';
 
 export const TurnDashboard: React.FC = () => {
     const navigate = useNavigate();
     const { gameState, nextPhase, endTurn, setPhase, setCurrentPlayer } = useGame();
     const [modalStack, setModalStack] = useState<{ type: string; data?: any }[]>([]);
+    const UI_TEXT = useTranslations();
+    const FACTIONS = useFactions();
 
     const phaseContainerRef = useRef<HTMLDivElement>(null);
     const phaseTabRefs = useRef<Map<GamePhase, HTMLButtonElement | null>>(new Map());
@@ -91,8 +94,8 @@ export const TurnDashboard: React.FC = () => {
     if (!gameState) {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
-                <p className="text-xl">No active game.</p>
-                <StyledButton onClick={() => navigate('/', { replace: true })} className="mt-4">Go to Main Menu</StyledButton>
+                <p className="text-xl">{UI_TEXT.turnDashboard.noActiveGame}</p>
+                <StyledButton onClick={() => navigate('/', { replace: true })} className="mt-4">{UI_TEXT.turnDashboard.goToMainMenu}</StyledButton>
             </div>
         );
     }
@@ -165,7 +168,7 @@ export const TurnDashboard: React.FC = () => {
                 <div className="max-w-5xl mx-auto flex justify-between items-center">
                     <div className="flex items-end gap-4">
                         <div className="text-left">
-                            <p className="text-sm text-stone-400">Player's Turn:</p>
+                            <p className="text-sm text-stone-400">{UI_TEXT.turnDashboard.playersTurn}</p>
                             <h1 className="text-xl sm:text-2xl font-title font-bold text-white leading-tight">{currentPlayer.name}</h1>
                         </div>
                         <Link
@@ -215,7 +218,7 @@ export const TurnDashboard: React.FC = () => {
                             ref={el => { phaseTabRefs.current.set(phase, el); }}
                             onClick={() => setPhase(phase)} 
                             className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-all duration-200 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900 font-bold' : 'border-b-4 border-transparent text-stone-600'}`}>
-                            {phase}
+                            {UI_TEXT.gamePhase[phase]}
                         </button>
                     ))}
                     </div>
@@ -223,10 +226,10 @@ export const TurnDashboard: React.FC = () => {
                     {/* Main Content Area */}
                     <div className="flex-grow">
                         <Card>
-                            <h2 className="text-xl sm:text-2xl font-title mb-4">Actions for {currentPhase}</h2>
+                            <h2 className="text-xl sm:text-2xl font-title mb-4">{UI_TEXT.turnDashboard.actionsForPhase(UI_TEXT.gamePhase[currentPhase])}</h2>
                             {phaseData.actions.length > 0 ? (
                                 renderActions()
-                            ) : <p className="text-stone-500 italic">No specific actions for this phase.</p>}
+                            ) : <p className="text-stone-500 italic">{UI_TEXT.turnDashboard.noActionsForPhase}</p>}
                         </Card>
                     </div>
 
@@ -237,12 +240,12 @@ export const TurnDashboard: React.FC = () => {
             <footer className="bg-stone-900 text-white p-3 border-t-4 border-orange-900 shadow-lg z-10 flex-shrink-0">
                 <div className="max-w-5xl mx-auto flex justify-between items-center">
                     <div className="flex gap-2">
-                        <StyledButton onClick={() => navigate('/library', { state: { fromGame: true } })} variant="icon" aria-label="Library">{ICONS.LAW}</StyledButton>
-                        <StyledButton onClick={() => openModal('players')} variant="icon" aria-label="Players">{ICONS.PLAYERS}</StyledButton>
-                        <StyledButton onClick={handleExitGame} variant="icon" aria-label="Exit Game">{ICONS.EXIT}</StyledButton>
+                        <StyledButton onClick={() => navigate('/library', { state: { fromGame: true } })} variant="icon" aria-label={UI_TEXT.turnDashboard.libraryAria}>{ICONS.LAW}</StyledButton>
+                        <StyledButton onClick={() => openModal('players')} variant="icon" aria-label={UI_TEXT.turnDashboard.playersAria}>{ICONS.PLAYERS}</StyledButton>
+                        <StyledButton onClick={handleExitGame} variant="icon" aria-label={UI_TEXT.turnDashboard.exitGameAria}>{ICONS.EXIT}</StyledButton>
                     </div>
                     <StyledButton onClick={handlePhaseAction}>
-                        {currentPhase === GamePhase.EVENING ? "End Turn" : "Next Phase"}
+                        {currentPhase === GamePhase.EVENING ? UI_TEXT.turnDashboard.endTurn : UI_TEXT.turnDashboard.nextPhase}
                     </StyledButton>
                 </div>
             </footer>
@@ -253,23 +256,23 @@ export const TurnDashboard: React.FC = () => {
                 let children: React.ReactNode = null;
 
                 if (modal.type === 'players') {
-                    title = 'Players';
+                    title = UI_TEXT.turnDashboard.players;
                     children = (
                         <div className="space-y-2">
                             {players.map((p) => (
                                 <div key={p.id} className="flex justify-between items-center p-2 bg-[#EAE1D2] rounded-md">
                                     <div className="flex items-baseline">
                                         <span className={`font-bold ${p.id === currentPlayer.id ? 'text-orange-800' : ''}`}>{p.name}</span>
-                                        <span className="text-sm text-stone-600 ml-2">- {FACTIONS[p.factionId].name}</span>
+                                        <span className="text-sm text-stone-600 ml-2">{UI_TEXT.turnDashboard.factionSeparator(FACTIONS[p.factionId].name)}</span>
                                     </div>
-                                    <StyledButton onClick={() => openModal('factionDetail', p)} variant="secondary" className="!py-1 !px-2">Rules</StyledButton>
+                                    <StyledButton onClick={() => openModal('factionDetail', p)} variant="secondary" className="!py-1 !px-2">{UI_TEXT.turnDashboard.rules}</StyledButton>
                                 </div>
                             ))}
                         </div>
                     );
                 } else if (modal.type === 'factionDetail') {
                     const player = modal.data as Player;
-                    title = `${player.name}'s Faction`;
+                    title = UI_TEXT.turnDashboard.factionDetailsTitle(player.name);
                     children = <FactionDetail faction={FACTIONS[player.factionId]} />;
                 } else if (modal.type === 'actionDetail') {
                     const action = modal.data as FactionAction;

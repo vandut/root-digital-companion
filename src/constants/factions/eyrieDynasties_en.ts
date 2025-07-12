@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const eyrieDynasties: Faction = {
   id: FactionId.EYRIE_DYNASTIES,
   name: 'Eyrie Dynasties',
   reach: 7,
-  type: 'Militant',
+  type: FactionType.MILITANT,
   tagline: 'The Old Kingdom. Regain control of the woodland by managing your ever-growing Decree.',
   howToWin: 'Score victory points each Evening based on the number of Roosts on the map. The more Roosts you have, the more points you score.',
   mechanics: 'The Eyrie is defined by the Decree, a mandatory set of actions you must perform each turn. The Decree is divided into four columns: Recruit, Move, Battle, and Build. Each turn, you must add one or two cards from your hand to the Decree, programming your actions for the turn. Bird cards are wild and can be added to any column, but they are also risky. During Daylight, you must resolve every action in the Decree, from left to right, in a clearing matching the suit of the card. For example, a Fox card in the Move column forces you to move from a Fox clearing. If you cannot perform any action in full, you fall into Turmoil. This is a catastrophic event where you lose victory points (one per bird card in your Decree), your current leader is deposed, and the entire Decree is wiped clean, leaving only your starting Vizier cards. A new leader must then be chosen, which sets a new starting Decree and special ability.',
@@ -22,7 +22,7 @@ export const eyrieDynasties: Faction = {
       "Tuck Viziers: Tuck your 2 Loyal Vizier cards (which are bird cards) into the Decree columns as shown on your chosen leader card.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         { 
           title: 'Emergency Orders', 
@@ -44,7 +44,7 @@ export const eyrieDynasties: Faction = {
         }
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Craft',
@@ -66,7 +66,7 @@ export const eyrieDynasties: Faction = {
         }
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Score Points',

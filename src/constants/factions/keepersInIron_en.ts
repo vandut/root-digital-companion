@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const keepersInIron: Faction = {
   id: FactionId.KEEPERS_IN_IRON,
   name: 'Keepers in Iron',
   reach: 8,
-  type: 'Militant',
+  type: FactionType.MILITANT,
   tagline: 'Questing Knights. Recover the lost relics of the woodland to restore the honor of your ancient order.',
   howToWin: 'Score victory points by recovering Relics. You must find them in the forests, move them to a Waystation of the correct type, and then perform the Recover action. You score points based on the Relic\'s value and for completing sets of all three relic types.',
   mechanics: 'The Keepers are a questing faction focused on recovering ancient Relics hidden in the forests. Each of your warriors can carry one relic with them as they move. To score a relic, you must bring it to one of your Waystations, a special building that can be placed by using the Encamp action. Waystations come in three types (matching the three relic types) and can also be turned back into warriors with the Decamp action. Your turn structure is determined by your Retinue, a set of three columns where you place cards from your hand to program your actions for the next turn. Each column has a specific set of actions (e.g., Move, Battle, Delve, Recover), and the number of cards in a column dictates how many times you can perform those actions.',
@@ -25,7 +25,7 @@ export const keepersInIron: Faction = {
     "Collect Waystations: Place your three waystation buildings on your faction board.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Manage Presence',
@@ -55,7 +55,7 @@ export const keepersInIron: Faction = {
         },
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Craft',
@@ -76,7 +76,7 @@ export const keepersInIron: Faction = {
         },
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Live Off the Land',

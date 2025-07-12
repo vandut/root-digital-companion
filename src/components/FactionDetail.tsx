@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
-import { Faction, GamePhase, FactionAction, OrderType } from '../constants/types';
+import { Faction, GamePhase, OrderType, FactionType } from '../constants/types';
 import { Card } from './Card';
 import { ICONS } from '../constants/icons';
 import { ExpandableFactionAction } from './ExpandableFactionAction';
+import { useTranslations } from '../hooks/useTranslations';
 
 interface FactionDetailProps {
   faction: Faction;
@@ -26,6 +27,7 @@ const AbilityItem: React.FC<{ title: string; description: string }> = ({ title, 
 );
 
 export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpandable = true }) => {
+  const UI_TEXT = useTranslations();
   const [openAction, setOpenAction] = useState<string | null>(null);
   const [isSetupExpanded, setIsSetupExpanded] = useState(false);
 
@@ -35,20 +37,20 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
             <h2 className="text-3xl sm:text-4xl font-bold text-stone-900">{faction.name}</h2>
             <p className="text-stone-600 italic mt-1">{faction.tagline}</p>
             <div className="mt-3 text-sm text-stone-800">
-                <span className="font-semibold">Reach:</span> {faction.reach}
+                <span className="font-semibold">{UI_TEXT.common.reach}</span> {faction.reach}
                 <span className="mx-2 text-stone-400">|</span>
-                <span className="font-semibold">Type:</span>{' '}
-                <span className={faction.type === 'Militant' ? 'text-red-700' : 'text-green-700'}>
-                    {faction.type}
+                <span className="font-semibold">{UI_TEXT.common.type}</span>{' '}
+                <span className={faction.type === FactionType.MILITANT ? 'text-red-700' : 'text-green-700'}>
+                    {UI_TEXT.factionType[faction.type]}
                 </span>
             </div>
         </div>
 
-        <DetailSection title="How to Win">
+        <DetailSection title={UI_TEXT.factionDetail.howToWin}>
             <p>{faction.howToWin}</p>
         </DetailSection>
 
-        <DetailSection title="Special Abilities">
+        <DetailSection title={UI_TEXT.factionDetail.specialAbilities}>
             {faction.specialAbilities.map(ability => (
                 <AbilityItem key={ability.title} title={ability.title} description={ability.description} />
             ))}
@@ -61,7 +63,7 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
                 aria-expanded={isSetupExpanded}
                 aria-controls="setup-details"
             >
-                <p className="font-bold text-stone-800 text-base sm:text-lg">Show Faction Setup</p>
+                <p className="font-bold text-stone-800 text-base sm:text-lg">{UI_TEXT.factionDetail.showSetup}</p>
                 <span className={`transform transition-transform duration-200 flex-shrink-0 text-stone-700 ${isSetupExpanded ? 'rotate-180' : ''}`}>
                     {ICONS.CHEVRON_DOWN}
                 </span>
@@ -79,25 +81,25 @@ export const FactionDetail: React.FC<FactionDetailProps> = ({ faction, isExpanda
             )}
         </div>
         
-        <DetailSection title="Mechanics">
+        <DetailSection title={UI_TEXT.factionDetail.mechanics}>
             <p>{faction.mechanics}</p>
         </DetailSection>
 
-        <DetailSection title="How to Play">
+        <DetailSection title={UI_TEXT.factionDetail.howToPlay}>
             <p>{faction.howToPlay}</p>
         </DetailSection>
 
-        <DetailSection title="Strategy">
+        <DetailSection title={UI_TEXT.factionDetail.strategy}>
             <p>{faction.strategy}</p>
         </DetailSection>
 
-        <DetailSection title="Turn Breakdown">
+        <DetailSection title={UI_TEXT.factionDetail.turnBreakdown}>
             <div className="space-y-4">
                 {[GamePhase.BIRDSONG, GamePhase.DAYLIGHT, GamePhase.EVENING].map(phase => {
                     let orderedActionCounter = 1;
                     return (
                         <div key={phase} className="bg-[#EAE1D2] p-4 rounded-lg">
-                            <h4 className="font-title text-base sm:text-lg font-bold text-stone-800 mb-2">{phase}</h4>
+                            <h4 className="font-title text-base sm:text-lg font-bold text-stone-800 mb-2">{UI_TEXT.gamePhase[phase]}</h4>
                             <div className="space-y-3">
                                 {faction.turn[phase].actions.map((action) => {
                                     const number = action.order === OrderType.ORDERED ? orderedActionCounter++ : null;

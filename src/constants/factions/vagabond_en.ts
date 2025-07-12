@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const vagabond: Faction = {
   id: FactionId.VAGABOND,
   name: 'Vagabond',
   reach: 5,
-  type: 'Insurgent',
+  type: FactionType.INSURGENT,
   tagline: 'A Lone Wanderer. Forge your own path by completing quests, aiding or harming other factions, and exploring the ruins.',
   howToWin: 'Score victory points by improving Relationships with other factions, completing Quests, aiding Allied factions, and removing warriors of Hostile factions (Infamy). You can also form a Coalition with another player and share their victory.',
   mechanics: 'The Vagabond is a single pawn whose actions are determined by an inventory of Items. Boots let you move, Swords let you battle, Torches let you explore ruins for more items, and so on. To use an item, you must exhaust it (flip it face-down). At the start of your turn, you refresh a base number of items, plus more for each torch you have. If you take hits in battle, you must damage items, which cannot be used until repaired in a forest or with a hammer. A crucial mechanic is the Relationship track. By Aiding another faction (giving them a card that matches your clearing), you improve your relationship, score points, and take one of their crafted items. An Allied relationship lets you move and fight alongside that faction\'s warriors. Conversely, attacking a faction makes them Hostile, allowing you to score points for removing their pieces but making it harder to move through their territory.',
@@ -24,7 +24,7 @@ export const vagabond: Faction = {
     "Populate Ruins & Take Items: Place items marked with 'R' under the ruin tokens, then take your character's specific starting items marked with 'S'.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Refresh',
@@ -46,7 +46,7 @@ export const vagabond: Faction = {
         }
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Take Daylight Actions',
@@ -132,7 +132,7 @@ export const vagabond: Faction = {
         },
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'An Evening\'s Rest',

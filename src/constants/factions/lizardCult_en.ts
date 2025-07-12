@@ -1,22 +1,22 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const lizardCult: Faction = {
   id: FactionId.LIZARD_CULT,
   name: 'Lizard Cult',
   reach: 2,
-  type: 'Militant',
+  type: FactionType.MILITANT,
   tagline: 'Fanatical Proselytizers. Convert the outcasts of the woodland and spread your gospel through overwhelming conviction.',
   howToWin: 'Score victory points primarily by performing the Score ritual in Daylight. The more Gardens of a certain suit you have, the more points you score when you spend a card of that suit.',
   mechanics: 'The Cult\'s actions are dictated by the discard pile, known as the Lost Souls. The most numerous suit in the Lost Souls at the start of your turn becomes the Outcast suit. This suit determines where you can perform powerful Conspiracy actions, which are fueled by Acolytes. You gain Acolytes primarily through your Revenge ability when your warriors are removed on defense. Your Daylight phase is spent performing Rituals by revealing cards from your hand. For each card revealed, you get one action (Build, Recruit, or Score). You only spend the card if you perform the Score ritual, making hand management crucial. Your buildings, Gardens, have a special property called Pilgrims, which makes you rule any clearing where you have a garden, a massive advantage for controlling the board.',
-  howToPlay: 'The Lizard Cult is a faction that thrives on the actions of others. You must pay close attention to what other players are discarding to manipulate the Outcast suit to your advantage. You are weak in battle, so use your "Revenge" ability to your advantage—losing defenders gives you acolytes for powerful conspiracies. Your "Pilgrims" ability is one of the strongest in the game; a single garden lets you rule a clearing. Use this to block other factions from building and moving.',
-  strategy: 'Your goal is to manipulate the "Outcast" suit to be a suit where you have established a presence and can build gardens, allowing you to score big. In the early game, try to persuade other players to discard cards of the suit you need to become the Outcast. Your most powerful Conspiracy is Sanctify, which lets you replace an enemy building with a garden, a huge swing in board state and points. Your scoring is slow but can accelerate dramatically if you build many gardens of the same suit and can make that suit the Outcast.',
+  howToPlay: 'The Lizard Cult is a faction that thrives on careful planning. You must pay close attention to what cards you are discarding to manipulate the Outcast suit to your advantage. You are weak in battle, so use your "Revenge" ability to your advantage—losing defenders gives you acolytes for powerful conspiracies. Your "Pilgrims" ability is one of the strongest in the game; a single garden lets you rule a clearing. Use this to block other factions from building and moving.',
+  strategy: 'Your goal is to manipulate the "Outcast" suit to be a suit where you have established a presence and can build gardens, allowing you to score big. In the early game, carefully manage your hand to discard cards of the suit you need to become the Outcast. Your most powerful Conspiracy is Sanctify, which lets you replace an enemy building with a garden, a huge swing in board state and points. Your scoring is slow but can accelerate dramatically if you build many gardens of the same suit and can make that suit the Outcast.',
   specialAbilities: [
     { title: 'Hatred of Birds', description: 'Bird cards are not wild for your Rituals. The bird suit is its own separate thing, used for the Sacrifice ritual.' },
     { title: 'Revenge', description: 'When one of your warriors is removed while defending in battle, it is placed in the Acolytes box instead of your supply. This fuels your conspiracies.' },
     { title: 'Pilgrims', description: 'You rule any clearing where you have a garden, regardless of warriors or buildings. This overrides normal rule.' },
     { title: 'Fear of the Faithful', description: 'If one of your gardens is removed, you must discard a random card from your hand.' },
-    { title: 'The Lost Souls Pile', description: 'Whenever any player spends or discards a card, it goes to the Lost Souls pile instead of the main discard. This pile determines your Outcast suit.' },
+    { title: 'The Lost Souls Pile', description: 'Whenever you spend or discard a card, it goes to the Lost Souls pile instead of the main discard. This pile determines your Outcast suit.' },
   ],
   setup: [
     "Gather Warriors: Form a supply of 25 warriors.",
@@ -25,7 +25,7 @@ export const lizardCult: Faction = {
     "Fill Garden Tracks: Place your 14 remaining gardens on your faction board.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Adjust Outcast',
@@ -55,7 +55,7 @@ export const lizardCult: Faction = {
         },
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Perform Rituals',
@@ -92,7 +92,7 @@ export const lizardCult: Faction = {
         },
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Return Revealed Cards',

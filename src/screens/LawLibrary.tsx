@@ -1,20 +1,25 @@
+
 import React, { useRef, useEffect } from 'react';
 import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
-import { Faction, LibraryCategory } from '../constants/types';
+import { Faction, LibraryCategory, FactionType } from '../constants/types';
 import { FactionDetail } from '../components/FactionDetail';
 import { StyledButton } from '../components/StyledButton';
 import { ICONS } from '../constants/icons';
-import { FACTIONS } from '../constants/factions';
-import { LIBRARY_DATA } from '../constants/library';
 import { IMAGES } from '../constants/images';
 import { LibraryContainer } from '../components/LibraryContainer';
 import { CollapsibleInfo } from '../components/CollapsibleInfo';
+import { useTranslations } from '../hooks/useTranslations';
+import { useFactions } from '../hooks/useFactions';
+import { useLibraryData } from '../hooks/useLibraryData';
 
 export const LawLibrary: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { categoryId, factionId } = useParams<{ categoryId?: string, factionId?: string }>();
     const containerRef = useRef<HTMLDivElement>(null);
+    const UI_TEXT = useTranslations();
+    const FACTIONS = useFactions();
+    const { LIBRARY_DATA } = useLibraryData();
 
     useEffect(() => {
         if (containerRef.current) {
@@ -41,16 +46,16 @@ export const LawLibrary: React.FC = () => {
         return (
             <div className="text-lg sm:text-xl font-title font-bold text-stone-300 truncate">
                 {!selectedCategory ? (
-                    <span className="text-white">Library</span>
+                    <span className="text-white">{UI_TEXT.lawLibrary.library}</span>
                 ) : (
                     <Link to="/library" state={{ fromGame }} className="text-orange-400 hover:text-orange-300 transition-colors">
-                        Library
+                        {UI_TEXT.lawLibrary.library}
                     </Link>
                 )}
     
                 {selectedCategory && (
                     <>
-                        <span className="text-stone-500 mx-2">/</span>
+                        <span className="text-stone-500 mx-2">{UI_TEXT.lawLibrary.breadcrumbSeparator}</span>
                         {!selectedFaction ? (
                             <span className="text-white">{selectedCategory.title}</span>
                         ) : (
@@ -63,7 +68,7 @@ export const LawLibrary: React.FC = () => {
     
                 {selectedFaction && (
                      <>
-                        <span className="text-stone-500 mx-2">/</span>
+                        <span className="text-stone-500 mx-2">{UI_TEXT.lawLibrary.breadcrumbSeparator}</span>
                         <span className="text-white">{selectedFaction.name}</span>
                      </>
                 )}
@@ -91,9 +96,9 @@ export const LawLibrary: React.FC = () => {
                                         <span className="text-lg sm:text-xl font-title font-bold text-stone-900">{faction.name}</span>
                                         <p className="text-sm text-stone-600 mt-1">{faction.tagline}</p>
                                         <p className="text-xs text-stone-500 mt-2">
-                                            <strong className="font-semibold">Reach:</strong> {faction.reach} &bull; <strong className="font-semibold">Type:</strong>{' '}
-                                            <span className={faction.type === 'Militant' ? 'text-red-700' : 'text-green-700'}>
-                                                {faction.type}
+                                            <strong className="font-semibold">{UI_TEXT.common.reach}</strong> {faction.reach} &bull; <strong className="font-semibold">{UI_TEXT.common.type}</strong>{' '}
+                                            <span className={faction.type === FactionType.MILITANT ? 'text-red-700' : 'text-green-700'}>
+                                                {UI_TEXT.factionType[faction.type]}
                                             </span>
                                         </p>
                                     </Link>
@@ -142,7 +147,7 @@ export const LawLibrary: React.FC = () => {
                                     </div>
                                     <div className="relative flex justify-center">
                                         <span className="bg-[#D3C6B0] px-4 font-title text-base font-bold uppercase tracking-wider text-orange-900/80">
-                                            Optional Modules
+                                            {UI_TEXT.lawLibrary.optionalModules}
                                         </span>
                                     </div>
                                 </div>
@@ -170,7 +175,7 @@ export const LawLibrary: React.FC = () => {
                         <Breadcrumbs />
                     </div>
                     <StyledButton onClick={handleHeaderAction} variant="secondary">
-                      Back
+                      {UI_TEXT.common.back}
                     </StyledButton>
                 </div>
             </header>

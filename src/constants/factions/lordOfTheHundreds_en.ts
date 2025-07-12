@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const lordOfTheHundreds: Faction = {
   id: FactionId.LORD_OF_THE_HUNDREDS,
   name: 'Lord of the Hundreds',
   reach: 9,
-  type: 'Militant',
+  type: FactionType.MILITANT,
   tagline: 'Warlord of the Wastes. Rule through fear and overwhelming force, scoring points by oppressing clearings.',
   howToWin: 'Score points in the Evening by Oppressing the woodland—ruling clearings that contain your pieces and no enemy pieces. The more such clearings you rule, the more points you score.',
   mechanics: 'This faction is led by a single powerful Warlord piece, which is harder to remove than a normal warrior. Your action economy is determined by your Hoard of items; the more items you have, the more actions you can take. Your Command value (1-4) dictates your number of standard actions, while your Prowess value (1-4) determines how many times you can use your powerful Warlord Advance action. Each turn you select a new Mood, a temporary ability that shapes your strategy for the turn (e.g., ignoring the first hit in battle). You can also spend cards to Incite Mobs in clearings, which will then Raze all enemy buildings and tokens in that clearing at the start of your next turn. Your primary scoring comes from Oppress, where you gain VP for each clearing you rule that is empty of enemy pieces.',
@@ -24,7 +24,7 @@ export const lordOfTheHundreds: Faction = {
     "Get Stubborn: Place your Stubborn mood card (ignore the first hit in your Warlord's clearing) on your Mood Card slot.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Raze',
@@ -52,7 +52,7 @@ export const lordOfTheHundreds: Faction = {
         },
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Craft',
@@ -95,7 +95,7 @@ export const lordOfTheHundreds: Faction = {
         }
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Incite',

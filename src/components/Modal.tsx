@@ -2,6 +2,7 @@
 import React, { ReactNode } from 'react';
 import { Card } from './Card';
 import { StyledButton } from './StyledButton';
+import { useTranslations } from '../hooks/useTranslations';
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,6 +15,8 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, hasBackdrop = true, type = 'default' }) => {
   if (!isOpen) return null;
+  
+  const UI_TEXT = useTranslations();
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -33,7 +36,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
       <Card className={`w-full ${sizeClass} max-h-[90vh] overflow-y-auto bg-[#D3C6B0] border-2 border-stone-800 shadow-2xl`}>
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl sm:text-2xl font-bold text-stone-900">{title}</h2>
-          <StyledButton onClick={onClose} variant="secondary" className="!py-1 !px-3">Close</StyledButton>
+          <StyledButton onClick={onClose} variant="secondary" className="!py-1 !px-3">{UI_TEXT.common.close}</StyledButton>
         </div>
         {children}
       </Card>

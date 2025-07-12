@@ -5,10 +5,12 @@ import { useGame } from '../hooks/useGame';
 import { ICONS } from '../constants/icons';
 import { StyledButton } from '../components/StyledButton';
 import { IMAGES } from '../constants/images';
+import { useTranslations } from '../hooks/useTranslations';
 
 export const MainMenu: React.FC = () => {
     const navigate = useNavigate();
     const { isGameSaved, continueGame } = useGame();
+    const UI_TEXT = useTranslations();
 
     const handleContinue = () => {
         continueGame();
@@ -21,16 +23,16 @@ export const MainMenu: React.FC = () => {
                 <div className="w-48 mx-auto mb-4 text-stone-900">
                     {ICONS.LOGO}
                 </div>
-                <h2 className="text-lg text-stone-700 font-serif italic mb-6 sm:mb-8">A Digital Companion</h2>
+                <h2 className="text-lg text-stone-700 font-serif italic mb-6 sm:mb-8">{UI_TEXT.mainMenu.tagline}</h2>
 
                 <div className="space-y-4">
-                    <StyledButton onClick={() => navigate('/setup')} className="w-full">New Game</StyledButton>
-                    <StyledButton onClick={handleContinue} disabled={!isGameSaved} className="w-full">Continue Game</StyledButton>
-                    <StyledButton onClick={() => navigate('/library')} variant="secondary" className="w-full">Law Library</StyledButton>
+                    <StyledButton onClick={() => navigate('/setup')} className="w-full">{UI_TEXT.mainMenu.newGame}</StyledButton>
+                    <StyledButton onClick={handleContinue} disabled={!isGameSaved} className="w-full">{UI_TEXT.mainMenu.continueGame}</StyledButton>
+                    <StyledButton onClick={() => navigate('/library')} variant="secondary" className="w-full">{UI_TEXT.mainMenu.lawLibrary}</StyledButton>
                 </div>
 
                 <div className="mt-6 sm:mt-8">
-                    <StyledButton onClick={() => navigate('/settings')} variant="icon" aria-label="Settings">
+                    <StyledButton onClick={() => navigate('/settings')} variant="icon" aria-label={UI_TEXT.mainMenu.settingsAria}>
                         {ICONS.SETTINGS}
                     </StyledButton>
                 </div>

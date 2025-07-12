@@ -24,7 +24,7 @@ export const landmarks: LibraryCategory = {
                     collapsible: {
                         summary: 'Show Landmark Setup Steps',
                         details: [
-                            'Step 1: Choose. As a group, decide if you are playing with one or two landmarks. Remove any landmark cards you do not want to use.',
+                            'Step 1: Choose. As a group, decide if you are playing with one or two landmarks. Remove any landmark card you do not want to use.',
                             'Step 2: Deal and Collect. Shuffle the chosen landmark cards, deal out the chosen number, and collect the landmark piece shown on each dealt card.',
                             'Step 3: Set Up. The last player in turn order sets up one drawn landmark as described on its card. If playing with two landmarks, the second-to-last player in turn order sets up the other drawn landmark.',
                             'Note on Map Conflicts: If using Variant Maps, the placement of landmarks may ignore or override the placement of the Tower (Mountain Map) and Ferry (Lake Map) pieces.'

@@ -1,33 +1,57 @@
-
 import React, { createContext, useState, useEffect, ReactNode, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const SETTINGS_STORAGE_KEY = 'root-companion:v1:settings';
 
+export type Language = 'en' | 'pl';
+
 interface Settings {
   preventScreenLock: boolean;
+  language: Language;
 }
 
 const defaultSettings: Settings = {
   preventScreenLock: false,
+  language: 'en',
 };
+
+const getInitialSettings = (): Settings => {
+  // 1. Try to load from localStorage
+  try {
+    const saved = localStorage.getItem(SETTINGS_STORAGE_KEY);
+    if (saved) {
+      return { ...defaultSettings, ...JSON.parse(saved) };
+    }
+  } catch (error) {
+    console.error('Error reading settings from localStorage:', error);
+  }
+
+  // 2. If no settings in localStorage, detect browser language
+  const browserLanguages = navigator.languages || [navigator.language];
+  for (const lang of browserLanguages) {
+    const primaryLang = lang.split('-')[0].toLowerCase();
+    if (primaryLang === 'pl') {
+      return { ...defaultSettings, language: 'pl' };
+    }
+    if (primaryLang === 'en') {
+      return { ...defaultSettings, language: 'en' };
+    }
+  }
+
+  // 3. Fallback to default settings
+  return defaultSettings;
+};
+
 
 interface SettingsContextType {
   settings: Settings;
-  updateSetting: (key: keyof Settings, value: boolean) => void;
+  updateSetting: <K extends keyof Settings>(key: K, value: Settings[K]) => void;
 }
 
 export const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
 export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [settings, setSettings] = useState<Settings>(() => {
-    try {
-      const saved = localStorage.getItem(SETTINGS_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : defaultSettings;
-    } catch {
-      return defaultSettings;
-    }
-  });
+  const [settings, setSettings] = useState<Settings>(getInitialSettings);
 
   const wakeLock = useRef<WakeLockSentinel | null>(null);
   const location = useLocation();
@@ -77,7 +101,7 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
   }, [settings, location.pathname]);
 
 
-  const updateSetting = (key: keyof Settings, value: boolean) => {
+  const updateSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     setSettings(s => ({ ...s, [key]: value }));
   };
 

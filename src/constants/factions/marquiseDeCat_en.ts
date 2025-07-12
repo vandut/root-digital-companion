@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const marquiseDeCat: Faction = {
   id: FactionId.MARQUISE_DE_CAT,
   name: 'Marquise de Cat',
   reach: 10,
-  type: 'Militant',
+  type: FactionType.MILITANT,
   tagline: 'Engine of War. Rule the woods by building a massive, interconnected economy.',
   howToWin: 'Score victory points by building Workshops, Sawmills, and Recruiters. The more of a single building type you have, the more points the next one will be worth.',
   mechanics: 'The Marquise is an engine-building faction focused on infrastructure. Your main components are Wood and Buildings. Sawmills produce Wood tokens. These Wood tokens are then spent to place other buildings: Workshops for crafting, and Recruiters for generating warriors. The cost of each building type increases as you build more of them, but so do the victory points you score. A key mechanic is the Supply Line: to build, you must be able to trace a path of clearings you rule from the build site back to a clearing with Wood. Your action economy is also crucial; you get three actions per turn, but can spend Bird cards for extra actions or to use your powerful Overwork ability.',
@@ -22,7 +22,7 @@ export const marquiseDeCat: Faction = {
     "Place Starting Buildings: Place 1 sawmill, 1 workshop, and 1 recruiter. You may place them among the clearing with the keep token and any adjacent clearings, in any combination."
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         { 
           title: 'Place Wood', 
@@ -35,7 +35,7 @@ export const marquiseDeCat: Faction = {
         }
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Take Daylight Actions',
@@ -97,7 +97,7 @@ export const marquiseDeCat: Faction = {
         }
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         { 
           title: 'Draw Cards', 

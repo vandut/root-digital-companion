@@ -1,11 +1,11 @@
 
-import { Faction, FactionId, OrderType } from '../types';
+import { Faction, FactionId, OrderType, FactionType, GamePhase } from '../types';
 
 export const riverfolkCompany: Faction = {
   id: FactionId.RIVERFOLK_COMPANY,
   name: 'Riverfolk Company',
   reach: 5,
-  type: 'Insurgent',
+  type: FactionType.INSURGENT,
   tagline: 'Masters of Commerce. Profit from the war by selling your services and establishing a trade empire.',
   howToWin: 'Score victory points by placing trade posts. You also score points (Dividends) based on your hoard of funds at the end of your turn.',
   mechanics: 'The Riverfolk\'s core mechanic is commerce. You offer Services (Hand Cards, Riverboats, Mercenaries) that other players can buy at the start of their turn. The price is set by you. When a player buys a service, they pay you with their own warriors, which you place in your Funds box. These Funds are your currency to take actions. Actions can be taken by either Committing a fund (placing it in your Committed box, to be returned next turn) for repeatable actions like Move or Battle, or by Spending a fund (returning it to its owner\'s supply) for permanent actions like building Trade Posts. Trade Posts are your main source of victory points and also serve as crafting stations. The more you build, the more services you can sell. Finally, you can score Dividends at the start of your turn based on the number of warriors in your Funds box.',
@@ -25,7 +25,7 @@ export const riverfolkCompany: Faction = {
     "Set Starting Prices: Place one service marker on any space on each of your three Services tracks.",
   ],
   turn: {
-    Birdsong: {
+    [GamePhase.BIRDSONG]: {
       actions: [
         {
           title: 'Protectionism',
@@ -47,7 +47,7 @@ export const riverfolkCompany: Faction = {
         },
       ]
     },
-    Daylight: {
+    [GamePhase.DAYLIGHT]: {
       actions: [
         {
           title: 'Commit and Spend Funds',
@@ -85,7 +85,7 @@ export const riverfolkCompany: Faction = {
         },
       ]
     },
-    Evening: {
+    [GamePhase.EVENING]: {
       actions: [
         {
           title: 'Discard Cards',
