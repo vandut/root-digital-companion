@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useGame } from '../hooks/useGame';
@@ -232,8 +231,11 @@ export const TurnDashboard: React.FC = () => {
                             key={phase} 
                             ref={el => { phaseTabRefs.current.set(phase, el); }}
                             onClick={() => setPhase(phase)} 
-                            className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-colors duration-200 rounded-t-lg font-bold ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900' : 'border-b-4 border-transparent text-stone-600 opacity-70'}`}>
-                            {UI_TEXT.gamePhase[phase]}
+                            className={`font-title text-lg sm:text-xl py-2 px-4 sm:px-6 whitespace-nowrap flex-shrink-0 transition-colors duration-200 rounded-t-lg ${currentPhase === phase ? 'border-b-4 border-orange-800 text-stone-900' : 'border-b-4 border-transparent text-stone-900'}`}>
+                            <span className="relative">
+                                <span className="font-bold invisible" aria-hidden="true">{UI_TEXT.gamePhase[phase]}</span>
+                                <span className={`absolute inset-0 flex items-center justify-center ${currentPhase === phase ? 'font-bold' : ''}`}>{UI_TEXT.gamePhase[phase]}</span>
+                            </span>
                         </button>
                     ))}
                     </div>
